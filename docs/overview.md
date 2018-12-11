@@ -35,19 +35,19 @@ __Parallel Execution of programs__
 
 This part we will end discussing for what types of computing jobs cluster computing is suited.
 
-<[hand-outs](./docs/intro_hpc.md)>
+<[hand-outs](./intro_hpc.md)>
 
 ### Example program in R: Recognizing Hand-written Digits with Machine Learning
 
 Throughout the workshop we will use a small program to solve the challenge of recognizing handwritten digits by a computer. This is a rather famous example in Machine Learning. We will run an R script on your local computer and notice why and when we are in need of an HPC.
 
-<[course material](./docs/intro_svm.md)>
+<[course material](./intro_svm.md)>
 
 ### Getting started with LISA
 
 Before you can start working on LISA, you have to register your account, and install some software packages on your computer. This software is necessary to login on LISA (terminal session) and to transfer file s between your workstation and LISA. You also learn basic Linux commands. There are differnt software packages for Mac users and Window users. On LISA you all work with the same operating system: LINUX. Linux on Lisa doesn't support a graphical user interface (GUI). We will teach you how to edit text files on a window-less system.
 
-<[course material](./docs/preparations.md)>
+<[course material](./preparations.md)>
 
 ### Your first program on Lisa
 
