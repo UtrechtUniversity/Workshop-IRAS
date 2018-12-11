@@ -1,13 +1,19 @@
-# Generate Batch Script for grid search Digits Recognition with SVM
+# Generate Batch Script for Digits Recognition with SVM
+# - Generates batch script for each node
+# - generates submission script for all the jobs
+# - does a grid search
 #
-# Rscript R/generate_batch_svm.R -N [number of nodes to use]
+# Command:
+#     Rscript R/generate_batch_svm.R -N [positive integer]
 #
 # Arguments:
 #     -N: Number of nodes to use; one batch file (job) for each node 
 #
-# Authors: Roel Brouwer, Kees van Eijden, Jonathan de Bruin
+# Authors:
+#     Roel Brouwer, Kees van Eijden, Jonathan de Bruin
 #
-# License: BSD-3-Clause
+# License:
+#     BSD-3-Clause
 
 
 #' Generic function to create batch files for HPC cluster.
@@ -18,7 +24,7 @@
 #'
 make_bash_file <- function (parameters, n_processes = 15, n_batch = 1) {
 
-  # recursive as log as number of rows greater than number of processes on one node
+  # recursive as long as number of rows greater than number of processes on one node
   if (nrow(parameters) > n_processes){
     make_bash_file(tail(parameters, nrow(parameters)-n_processes), 
                    n_processes = n_processes, 
@@ -30,8 +36,8 @@ make_bash_file <- function (parameters, n_processes = 15, n_batch = 1) {
   if (!dir.exists("batch")) dir.create("batch")
   batch_script <- file.path("batch",
                              sprintf("batch-%d.sh", n_batch))
+  fbatch       <- file(batch_script, open = "w")
   
-  fbatch <- file(batch_script, open = "w")
   writeLines("#!/bin/bash", fbatch)
   writeLines("#SBATCH -t 00:05:00", fbatch)
   writeLines("#SBATCH -N 1", fbatch)
@@ -74,7 +80,7 @@ opt <- getopt::getopt(
 # defaults for options not specified
 if (is.null(opt$nodes)) { opt$nodes = 1 }
 
-# more nodes than tasks is, in anyway, a waste
+# using more nodes than tasks is a waste
 if (opt$nodes > nrow(hyperparameters)) {opt$nodes <- nrow(hyperparameters)}
 
 # the number of tasks or processes on one node (in one job)
