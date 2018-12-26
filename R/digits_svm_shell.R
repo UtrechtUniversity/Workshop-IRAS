@@ -19,7 +19,7 @@ library("tidyverse")
 opt <- getopt::getopt(
   matrix(
     c('gamma', 'G', 1, "numeric",
-      'cost', 'C', 1, "numeric"
+      'cost',  'C', 1, "numeric"
     ), 
     byrow=TRUE, ncol=4
   ))
