@@ -57,7 +57,7 @@ Open the file ./R/digits_svm_IDE.R) in the _source panel_ of RStudio. Go step by
 
 ### Apply a grid search to get a model with a better accuracy
 
-In the previous we ha a model with an accuray of ~85%. If a mail sorting proces of a postal service would have such an accuracy, that company should have to close its doors immediately. We are going to do a grid search. Several combinations of hyperparameter settings are tried and we can then can select the setting with the best accuracy. 
+In the previous we ha a model with an accuray of ~85%. If a mail sorting proces of a postal service would have such an accuracy, that company could close its doors. To find a better accuracy, we are going to do a grid search. Several combinations of hyperparameter settings are tried and we can then can select the setting with the best accuracy. 
 
 Load the file ./R/digits_svm_IDE_gs.R in the _source pane_ of RStudio. Run the programm step by step (Ctrl-R)
 

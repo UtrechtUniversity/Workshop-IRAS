@@ -2,7 +2,6 @@
 #SBATCH -t 00:05:00
 #SBATCH -N 1
 cd $HOME/workshop
-module load eb
 module load R
 date
 Rscript --vanilla R/digits_svm_hpc.R -T 1 -C 0.031250 -G 0.000031 &
