@@ -13,7 +13,7 @@ module load R
 Rscript "./R/digits_svm_IDE.R"
 ```
 
-The output to your screen should look like the output you will have gotten in the _console pane_ of RStudio before.
+The output to your screen should look like the output you have gotten before in the _console pane_ of RStudio.
 
 A warning! You have offended the rules of SURFsara. It's not allowed to run computations on a login node. The login node may only be used for editing, copying or moving files and other linux commands. All computations must be send to the batch schedulers which will transfer these jobs to compute nodes.
 
@@ -48,18 +48,23 @@ Rscript ./R/digits_svm_IDE.R &
                           # programs (tasks) in the same batch script
 wait
 ```
-With the `sbatch` commmand this job can be submitted to the scheduler. Type the following line at the command prompt. Be sure your working directory is `Workshop-IRAS`
+
+With the `sbatch` commmand this job can be submitted to the scheduler. Type the following line at the command prompt. Be sure that your working directory is `Workshop-IRAS`
+
 ```
 sbatch ./batch/first_batch.sh
 ```
+
 The schedulers acknowledges the submission by replying with the job number.
-After submitting, you cab inspect the status of your job in the queue with
+After submitting, you can inspect the status of your job in the queue with:
+
 ```
 squeue -u <username>
 ```
+
 If you don't see a queue with your program it may have already been ended, because this job is very small.
 
-In the the directory `Workshop-IRAS` there is a file slurm-<job number>.out. If you open this file you see the already well known output of your R script. This file will contain all output (e.g. warnings and errors) of all the commands in the batch file.
+In the the directory `Workshop-IRAS` there is a file `slurm-<job number>.out`. If you open this file you see the already well known output of your R script. This file will contain all output (e.g. warnings and errors) of all the commands in the batch file.
 
 #### Sending output of R script to a separate file
 
@@ -76,7 +81,7 @@ Run the batch script and check the output files. Notice that the scheduler by us
 
 #### Notify user when job has started and ended
 
-The jobs in this workshop are very small and nearly all the time they will run almost immediately. But when the time in the queue and the lead time of the job will take hours or days, you can't repeatedly running `squeue` at the terminal. It would be nice if the scheduler would send you a mail when the job has started and has ended.
+The jobs in this workshop are very small and nearly all the time they will run almost immediately. But when the time your jobs remain in the queue and the lead times of the jobs will take hours or days, you can't repeatedly running `squeue` at the terminal. It would be nice if the scheduler would send you a mail when the job has started and has ended.
 
 Add to the batch file `first_batch.sh` the following 2 lines.
 
@@ -116,11 +121,19 @@ wait
 cp -r "$TMPDIR"/output $SLURM_SUBMIT_DIR
 ```
 
-Submit the batch file and chack if all went well.
+Submit the batch file and check if all went well.
 
-#### Epilogue
+#### Doing a grid search with LISA
 
-So far we 
+In a previous lesson we did a grid search on our workstations. Now we have access to a supercomputer. Will the grid search run faster? Let's check by chanching the line with `Rscript` in the file `first_batch.sh` to contain the R script for the grid search.
+
+```
+Rscript ./R/digits_svm_IDE_gs.R &> ./output/svm_grid_search.out &
+```
+
+Submit the script `first_batch.sh` and inspect the output. Compare the results with the ones you obtained on your workstation. A not so slight disappointment, isn't it. My workstation was almost 30% faster. The reason is that LISA still uses one core to solve your problem sequentially. And in my case the cores of LISA are slower than the cores on my workstation (a remarkably fast Mac Book). We need to do things in parallel and thats the topic of the next lesson
+
+
 
 
 

@@ -1,8 +1,7 @@
-library(magrittr)
-library(readr)
+library(tidyverse)
 
 # make list of all the output files of each task
-data_file_pattern <- sprintf("^digits_svm_hpc.*\\.txt$")
+data_file_pattern <- sprintf("^digits_svm.*\\.csv$")
 data_files        <- list.files(path =       "output/",
                                 pattern =     data_file_pattern,
                                 full.names =  TRUE)
@@ -21,8 +20,15 @@ for (n in 1:n_tasks) {
   }
 }
 
-trials <- trials %>% arrange(desc(accuracy)) %>% select(task, cost, gamma, accuracy)
-write.csv(trials, "digits_svm.out", row.names = FALSE)
+trials <- trials %>% arrange(desc(accuracy)) %>% select(cost, gamma, accuracy)
+
+best_model <- sprintf("Best performing model with accuracy %f with cost %f and gamma %f\n",
+                       trials$accuracy[1],
+                       trials$cost[1],
+                       trials$gamma[1])
+cat(best_model)
+cat("Do find all the results in file digits_svm.csv\n")
+write.csv(trials, "digits_svm.csv", row.names = FALSE)
 
 
 

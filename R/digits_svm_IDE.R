@@ -37,27 +37,27 @@ cost  <- 2^0  # `cost` is penalty when a point is on the wrong side of the hyper
 clock_start <- Sys.time()
 
 # Fit a Support Vector Classifier
+# This is an example of supervised learning. The model uses the given classifications to
+# learn how to discriminate between the various digits
 model <- e1071::svm(x =     train_images,
                     y =     train_targets, 
                     gamma = gamma,
                     cost =  cost,
                     scale = FALSE)
 
-# Duration of training session
-#
-clock_end <- Sys.time()
-duration  <- as.numeric(clock_end - clock_start)
-
 
 # Predict the values of the digits in the test dataset
+# Because these samples are NOT used during learning, this is a good test how
+# well the trained model performs
+#
 prediction <- predict(object =  model, 
                       newdata = test_images)
 
-# Accuracy measure to evaluate the result
+  # Accuracy measure to evaluate the performance
   # How many predictions are correct or false
 agreement <- table(prediction == test_targets)
 
-  # Accuracy is defined as the fraction of correct predictions of all predictions
+  # Accuracy is defined as the fraction of correct predictions out of all predictions
 accuracy  <- agreement[2]/(agreement[1] + agreement[2])
 
 # Establish the duration of training session
@@ -70,5 +70,5 @@ duration  <- as.numeric(clock_end - clock_start)
 cat("Accuracy: ", accuracy,
     " with parameters C=", cost, 
     " and G=", gamma, 
-    " in ", duration, " sec\n")
+    " ; model trained in ", duration, " sec\n")
 

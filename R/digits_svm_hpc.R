@@ -1,11 +1,13 @@
 # Recognize written digits with Support Vector Machines
-#
+# 
+# Call:
+#   Rscript ./R/digits_svm_shell.R -C <value for 'cost'> -G <value for 'gamma'>
+# 
 # Arguments:
-#     -C: Penalty (cost) parameter C of the error term.
-#     -G: Kernel coefficient gamma
-#     -T: number of the task within the grid search
+#     -C:     Penalty parameter C of the error term.
+#     -G:     Kernel coefficient.
 #
-# Authors:      Roel Brouwer, Kees van Eijden, Jonathan de Bruin
+# Authors:    Roel Brouwer, Kees van Eijden, Jonathan de Bruin
 #
 # Dependencies: 
 # License:      BSD-3-Clause
@@ -13,30 +15,25 @@
 
 library("getopt")
 library("e1071")
-library("dplyr")
-library("magrittr")
+library("raster")
+library("tidyverse")
 
-#parsing the arguments to Rscript after program file: Rscript --[options] digits_svm.R [arguments]
+  # `getopt` parses the arguments given to an R script:
+  # Rscript --[options] script.R [arguments]
+  # Example: Rscript digits_svm_shell.R -C 0.5 -G 0.01
 opt <- getopt::getopt(
   matrix(
     c('gamma', 'G', 1, "numeric",
-      'cost',  'C', 1, "numeric",
-      'task',  'T', 1, "numeric"
+      'cost', 'C', 1, "numeric"
     ), 
-    byrow=TRUE, ncol=4
-  ))
+    byrow=TRUE, ncol=4))
 
 # default values for options not specified
-if (is.null(opt$gamma) ||
-    is.null(opt$cost)  ||
-    is.null(opt$task)) {quit(status = -1)}
+# depending on the situation at hand you could/should also check if given values are allowed
 
-gamma <- opt$gamma
-cost  <- opt$cost
-task  <- opt$task
+if (is.null(opt$gamma)) {opt$gamma = 2^-3}
+if (is.null(opt$cost))  {opt$cost  = 2^-1}
 
-
-trials <- expand.grid(cost = cost, gamma = gamma) %>% mutate(accuracy = 0, task = task)
 
 # The digits dataset (train dataset)
 train_set     <- read.csv("data/digits_trainset.csv", header= FALSE)
@@ -52,8 +49,8 @@ test_targets <- as.factor(test_set[[65]])
 # Fit a Support Vector Classifier
 model <- e1071::svm(x =     train_images,
                     y =     train_targets, 
-                    gamma = gamma,
-                    cost =  cost,
+                    gamma = opt$gamma,
+                    cost =  opt$cost,
                     scale = FALSE)
 
 # Predict the value of the digit on the test dataset
@@ -61,15 +58,27 @@ prediction <- predict(object =  model,
                       newdata = test_images)
 
 # Accuracy measure to evaluate the result
-agreement           <- table(prediction == test_targets)
-trials$accuracy[1]  <- agreement[2]/(agreement[1] + agreement[2])
+agreement  <- table(prediction == test_targets)
+accuracy   <- agreement[2]/(agreement[1] + agreement[2])
 
+# Store results in a data fame (tibble) and 
+# write that data frame to an '.csv' file
+trial      <- as_data_frame (
+                x = list(cost =     opt$cost,
+                         gamma =    opt$gamma,
+                         accuracy = accuracy))
 
-# write trial to a CSV file in output directory
+  # It's good practise to use the hyper paarmeter values in the name the outputfile and
+  # store the outputfiles in a dedicated subfolder
+  #
 if (!dir.exists("output")) { dir.create("output") }
-output_file <- file.path(
-  "output", 
-  sprintf("digits_svm_hpc_T_%d_C_%f_gamma_%f.txt", task, cost, gamma))
-write.csv(trials, output_file, row.names= FALSE)
+output_file <- file.path("./output", 
+                          sprintf("digits_svm_C_%f_G_%f.csv",
+                                   opt$cost,
+                                   opt$gamma))
+
+  # Write the result of this trial to the file with the parameter setting
+  #
+write.csv(trial, output_file, row.names= FALSE)
 
 # end of program

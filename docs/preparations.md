@@ -1,43 +1,50 @@
 
 
-## Part One: Preparing your local workstation
+## Necessary preparations for using **Lisa**
 
-In preparation for the workshop you have to register your account, and install some software & packages on your computer.
+As we said earlier, using an HPC isn't easy. You have to register your account, and install some software & packages on your computer. And, of course, learn how to use them.
 
 ### Your Lisa login
 
-By mail you have received your loginname and a password. Please change your password as instructed in the email. Make sure, that you can remember your password when logging in on LISA. Keep in mind that the workshop supervisor can't recover or reset your passord.
+You have received your loginname and a password by email. Please change your password as instructed in the email. Make sure, that you can remember your password when logging in on **Lisa**. Keep in mind that the workshop teachers can't recover or reset your password.
 
 ### Install MobaXterm (for Windows users)
 
-You need an application (tool) on your workstation to login on LISA. You also have to tranfer files between your local workstation and  LISA. For `windows` users we recommend to install [MobaXterm](https://mobaxterm.mobatek.net).
+You need an application (tool) on your workstation to login on **Lisa**. You also have to tranfer files between your local workstation and  **Lisa**. For `windows` users we recommend to install [MobaXterm](https://mobaxterm.mobatek.net).
 
 The website of Mobatek has instructive [videos](https://mobaxterm.mobatek.net/demo.html) on how to login on a remote machine. 
 
-Your remote host is `lisa.surfsara.nl` and you should use the login name you have received from SURFsara and the password you have entered when changing to original password. After you have succesfully logged in with MobaXterm, you see a command prompt in the right pane and a file browser in the left pane. In the right pane (a.k.a. terminal pane) you can enter commands to the LISA system. The left pane you can use for uploading and downloading files.
+Your remote host is `lisa.surfsara.nl` and you should use the login name you have received from SURFsara and the password you have entered when changing to original password. After you have succesfully logged in with MobaXterm, you see a command prompt in the right pane and a file browser in the left pane. In the right pane (a.k.a. _terminal pane_) you can enter commands to the **Lisa** system. The left pane you can use for uploading and downloading files.
 
 ### Install Cyberduck (for mac users)
 
-To login at LISA search with spot light for the app `terminal`. Drag the application into the Dock. Open `Terminal` and at the command prompt ("your apple home" >) type
+To login at **Lisa** search with spotlight for the app `terminal`. Drag the application into the Dock. Open `Terminal` and at the command prompt ("your apple home" >) type
 
 ```
 ssh your_login@lisa.surfsara.nl
 ```
 
-You will be prompted for your password. If your credentials are correct the command prompt of LISA will be shown. The command line syntax on LISA is almost the same as the syntax on your Mac.
+You will be prompted for your password. If your credentials are correct the command prompt of **LISA** will be shown. The command line syntax on **LISA** is almost the same as the syntax on your Mac. To the user _macOS_ looks very similar to _Linux_.
 
-To transfer files to and from LISA you need a file browser. We recommend [Cyberduck] (https://cyberduck.io). After installing Cyberduck click on _Open Connection_ and fill out the form. See figure below.
+To transfer files to and from **Lisa** you need a file browser. We recommend [Cyberduck] (https://cyberduck.io). After installing Cyberduck click on _Open Connection_ and fill out the form. See figure below.
 
-![_Open Connection with Cyberduck_](./cyberduck.png)
+![_Open Connection with Cyberduck_](./pictures/cyberduck.png)
 
 
-### Upload course material to LISA
+### Upload course material to **Lisa**
 
-Earlier on in this workshop you have downloaded the course material on your workstation. With the your new filebrowser installed (MobaXterm or Cyberduck) you can upload these files to LISA.
+Earlier in this workshop you have downloaded the course material to your workstation. With the new filebrowser installed (MobaXterm or Cyberduck) you can upload these files to **Lisa**. Upload the folder `Workshop-IRAS` on your workstation to **Lisa**. In your home directory on **Lisa** there now must also be a directory `Workshop-IRAS` with all the subdirectories and files. Check! 
 
-### Editing files on LISA
+### Editing files on **Lisa**
 
-You probably are acustomed to using RStudio to edit your R files. With RStudio you can also edit other `text` files. On LISA there is no RStudio or any other windows oriented editor like `Notepad` or `Xcode`. Linux editors like `vim` are very versatile, but hard to learn. It would take days to master these editors. For this course we edit files on our workstation. 
+You probably are acustomed to using RStudio to edit your R files. With RStudio you can also edit other `text` files. On LISA there is no RStudio or any other windows oriented editor like `Notepad` or `Xcode`. Linux editors like `vim` are very versatile, but hard to learn. It would take days to master these editors. For this course we will edit the files on your workstation.
+
+_For macOS users:_
+If you right click on a file in your file browser you can select `Edit with` and then select an editor. In the preferences of Cyberduck you can install a default editor (e.g. RStudio). If you save the file it will be transferred back to **Lisa**, but if you change the filename it will be stored oin your workstation.
+
+_For Windows users:_
+
+[Jelle & Mariana help me?]
 
 ### Useful Linux commands
 
@@ -61,55 +68,31 @@ Allthough we try to avoid working on the commandline of Lisa as much as possible
 
 `rmdir` : remove a directory (folder)
 
-During the sessions we will show you some examples how to use these commands.
+During the lessons we will show you some examples how to use these commands.
 
+We also have [An introduction](./intro_linux.md).
 
+### How to install R packages on **Lisa**
 
+On LISA many commonly used packages are pre-installed. [See this link](https://userinfo.surfsara.nl/systems/lisa/software/r). If an package isn't pre-installed, you have to do it yourself and that's on LISA not as easy as with RStudio on your workstation. The package `tidyverse` is not pre-installed, so we use this package to show you how to install R packages on **Lisa**.
 
-### How to install packages in R on LISA
+At the command prompt of **Lisa** type:
 
-On LISA many commonly used packages are pre-installed. See this link. If an package isn't pre-installed, you have to do it yourself and that's on LISA not as easy as with RStudio on your workstation. The package `tidyverse` is not pre-installed, so we use this package to show you how to install R packages on LISA.
-
-
-    tidyverse/dplyr/magrittr e1074, raster
-
-### 
-
-
-for Windows
-
-for Mac
-
-### Download course material from GitHub
-
-All the documents and scripts belonging to this workshop are stored in a GitHub repo [Workshop-IRAS](https://github.com/UtrechtUniversity/Workshop-IRAS).
-
-This repo is public and you can download the repository in a `.zip` file on your desktop. Sometimes your local computer will unzip the file immediately. If you are familiar with GitHub, you can also fork/clone the repo, but for this workshop it is not necessary to have these sources in a local git repo.
-
-Install (download/unzip or clone) the content of this repo in a folder on your local workstation where you keep all the sources of your R projects. As part of the workshop you will learn how to copy these file to your account on LISA.
-
-### R, Rscript and RStudio
-
-In this workshop you will be running R code on both the local workstation and on LISA.
-This workshop contains some assignments for which you have to run some R code on your local workstation. We assume you have fair knowledge of R. We will be using the package `tidyverse` for data manipulation. You should install this package on your workstation and also the packages `e1071` and `raster`.
+```
+module load R
+R
+```
+It starts an interactive R shell and at the prompt you can type R statements. Type:
 
 ```
 install.packages("tidyverse")
-install.packages("e1071")
-install.packages("raster")
 ```
-On LISA these packages will be pre-installed
 
+The system will ask for a CRAN mirror. Type 0 or 8. Maybe R will suggest a directory to store the packages. Confirm this suggestion. It will store the package in your user space. So it will be available (`library(tidyverse)`) in subsequent R sessions.
 
+### The next step
 
-
-### Assignments during workshop sessions
-
-In the first session the assignments wil be targetted on building a program for recognizing hand-written digits. We use the [MNIST database](https://en.wikipedia.org/wiki/MNIST_database) which is widely used for training and testing in the field of machine learning. There are several machine learning techniques; we will use _support vector machines_ [SVM](https://en.wikipedia.org/wiki/Support_vector_machine).
-
-At the beginning of the first session, you get a short introduction in Machine Learning and SVM. For the assignments it is __not__ necessary to have any knowledge of or experience with ML and SVM.
-
-
+Now your set up to use **Lisa**. Go back to the [overview](./overview.md) or go to the next lesson [Running your first program on **Lisa**](./first_job_on_lisa.md).
 
 
 
