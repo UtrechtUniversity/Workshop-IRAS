@@ -14,9 +14,10 @@ cd $SLURM_SUBMIT_DIR      # go to the directory from which the job was
                           # submitted
                           
                           # Run the R script in batch mode, meaning that this
-                          # script will not wait
+                          # script will not wait for this program to end
 Rscript ./R/digits_svm_IDE.R &
 
                           # Wait till all previous programs have ended
-                          # Sounds weird, but will be explained
+                          # Sounds weird, but will be explained when we run several 
+                          # programs (tasks) in the same batch script
 wait

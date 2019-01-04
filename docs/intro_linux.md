@@ -15,7 +15,8 @@ You are going to learn the most useful commands. Some of these commands can be p
 
 ```
 cd ~                             # go to login directory (a.k.a. home directory)
-cp -r Workshop-IRAS/ playground  # copy directory all contents of directory to a new directory
+cp -r Workshop-IRAS/ playground  # copy all contents of directory
+                                 # 'Workshop-IRAS'to a new directory
 cd playground                    # change current directory to 'playground'
 ls                               # show content of current directory
 ```
@@ -38,11 +39,12 @@ Let's look at some useful options of `cd`.
 cd ..              # go to parent directory
 pwd                # working directory should be 'playground'
 cd docs/pictures   # take two steps with one instruction
+ls                 # show contents
 cd ../../R         # take two steps back and one forward
 pwd                # check if your working directory is 'R'
 ```
 
-All the `cd` commands sofar are relative to the working directory (except `cd ~`). Some Linux systems requires you to specify the working directory explicitely with a '.'.
+All the `cd` commands sofar are relative to the working directory (except `cd ~`). Some Linux systems require you to specify the working directory explicitely with a '.'.
 
 ```
 cd ~/playground    # go to directory 'playground' where ever you currently are
@@ -120,30 +122,29 @@ cd ..                        # go to playground
 
 ### Repeat commands and Command completion
 
-You can recycle commands that you have typed earlier, which saves a lot of time.  
-After you have typed in a few commands, use the arrow-up and arrow-down keys to see previous commands. Execute a previous command by pressing Enter. You can also edit previous commands if you need to run a command which is only slightly different.
+You can recycle commands that you have typed earlier, which saves a lot of time. After you have typed in a few commands, use the arrow-up and arrow-down keys to see previous commands. Execute a previous command by pressing Enter. You can also edit previous commands if you need to run a command which is only slightly different. Use the arrow-left and arrow-right keys for navigation and back space for deleting. 
 
 If you type enough characters of a command or a filename to help the system identify what you mean, you can press tab to let the system finish the command or filename or foldername. This will also save you a lot of time. 
 
 ### Naming files
 
-In naming files, characters with special meanings such as `/ * & %` , should be avoided. Also, avoid using spaces within names. The safest way to name a file is to use only letters and numbers, together with _ (underscore) and . (dot). It is also good practise to give a file an extension indicating contents of the file. Only use capitals at the beginning or after an underscore. This file naming convention is known as *snake_case*. 
+In naming files, characters with special meanings such as `/ * & %` , should be avoided. Also, avoid using spaces within names. The safest way to name a file is to use only letters and numbers, together with _ (underscore) and . (dot). It is also good practise to give a file an extension indicating contents of the file. Only use capitals at the beginning. This file naming convention is known as *snake_case*. 
 
 **Good filenames**        
 project.txt        # file contains text      
 Test_1.R           # file contains R code        
-Bert_Ernie.csv     # file contains comma separated values
+Bert_ernie.csv     # file contains comma separated values
 
 **Bad filenames**
 project
 Test 1.m 
 Bert & Ernie.txt
-BertErnie.R
+Bert_Ernie.R
 
 
 ### Epilogue
 
-This was a short introduction to Linux to help you on to start working with **Lisa**. When you become a real HPC aficionado, you will have to learn more Linux commands. On the Internet there is an abundance of introductions, courses and e-books.
+This was a short introduction to Linux to help you to start working with **Lisa**. When you want to become a real HPC aficionado, you will have to learn more Linux commands. On the Internet there is an abundance of introductions, courses, e-books, etc.
 
 For now go back to the [Preparations](./preparations.md)
 

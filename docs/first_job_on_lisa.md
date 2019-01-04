@@ -3,19 +3,19 @@
 ### From RStudio to Rscript
 
 So many cores on one machine is a huge advantage, but a super computer has also disadvantages.
-For instance you don't have a nice _interactive development environment (IDE)_ as RStudio on LISA. How then are you going to run jobs. The solution to this problem is to use `Rscript`.
-This program can run from the command prompt and takes as argument an script written in R. Rscript will run that script like RStudio runs an script in its _source pane_.
+For instance you don't have a nice _interactive development environment (IDE)_ as RStudio on LISA. How then are you going to run your R jobs. The solution to this problem is to use `Rscript`.
+This program can run from the command prompt and takes as argument a script written in R. Rscript will run that script like RStudio runs an script in its _source pane_.
 
 If you have correctly installed the repo in the previous lesson, and if your working directory is `Workshop-IRAS` than you can try `Rscript` by typing the following lines at the prompt
 
 ```
 module load R
-Rscript "./R/digits_svm_IDE.R"
+Rscript ./R/digits_svm_IDE.R
 ```
 
-The output to your screen should look like the output you have gotten before in the _console pane_ of RStudio.
+The output to your screen should look like the output you have gotten before in the _console pane_ of RStudio. It took **Lisa** a little bit longer to train a model. Do you know why? And where has the picture of the digit gone?
 
-A warning! You have offended the rules of SURFsara. It's not allowed to run computations on a login node. The login node may only be used for editing, copying or moving files and other linux commands. All computations must be send to the batch schedulers which will transfer these jobs to compute nodes.
+**Warning!** You could have offended the rules of SURFsara. It's not allowed to run highly demanding computations on a login node. The login node may only be used for editing, copying or moving files and other linux commands. All heavy computations must be send to the batch schedulers which will transfer these jobs to compute nodes. But this was just a very little program, wasn't it?
 
 So from now on, we are going to use the batch scheduler. 
 
@@ -74,14 +74,24 @@ You can separate the console output of your R script from the other messages by 
 Rscript ./R/digits_svm_IDE.R &> ./output/digits_svm_IDE.out &
 ```
 
-The console output is now redirected to the file `digits_svm_IDE.out` in de subfolder `output`. It's quite common to store different types of files in separate subfolders (e.g. `R` scripts, `data` files, `batch` files, and `output` files).
+The console output of R is now redirected to the file `digits_svm_IDE.out` in de subfolder `output`. It's quite common to store different types of files in separate subfolders (e.g. `R` scripts, `data` files, `batch` files, and `output` files).
 
-Run the batch script and check the output files. Notice that the scheduler by using the job number takes care its output file doesn't overwrite its predecessor. Something we have to keep in mind for the output of our R script
+Run the batch script and check the output files. Notice that the scheduler, by using the job number, takes care that its output file doesn't overwrite those of its predecessors. Something we have to keep in mind for the output of our R script. 
+
+Where is the output file of Rscript? Is the contents of this file as you expected?. Why is the output file of the batch scheduler (slurm) empty?
+
+From time to time delete the output files of `sbatch`
+
+```
+rm ./slurm*.out
+```
+
+And also in the `output` directory. How?
 
 
 #### Notify user when job has started and ended
 
-The jobs in this workshop are very small and nearly all the time they will run almost immediately. But when the time your jobs remain in the queue and the lead times of the jobs will take hours or days, you can't repeatedly running `squeue` at the terminal. It would be nice if the scheduler would send you a mail when the job has started and has ended.
+The jobs in this workshop are very small and nearly all the time they will run almost immediately. But when the time your jobs remain in the queue and/or the lead times of the jobs will take hours (days), you can't repeatedly running `squeue` at the terminal. It would be nice if the scheduler would send you a email when the job  starts and ends.
 
 Add to the batch file `first_batch.sh` the following 2 lines.
 
@@ -90,14 +100,14 @@ Add to the batch file `first_batch.sh` the following 2 lines.
 #SBATCH --mail-user=<your email address>
 ```
 
-Run submit the batch job and check wether you are receiving the two mail messages
+Run submit the batch job and check wether you have received the two email messages
 
 
 #### Using **scratch** space
 
-Every node of LISA has, as almost every other computer cluster, its own disks attached. This file space (a.k.a. as scratch space) is very fast compared to the disks (a.k.a. home space) where you have stored the files of this workshop.
+Every node of **Lisa** has, as almost every other computer cluster, its own disks attached. This file space (known as **scratch space**) is very fast compared to the disks where you have stored the files of this workshop.
 
-The system administrators urge us users to use the scratch space for performance reasons. So before running the R script we will copy the input files to the scratch space and at the end we will copy the output back to our home space. Add the necessary lines to the file `first_batch.sh`
+The system administrators urge the users to use the scratch space for performance reasons. So before running the R script we will copy the input files to the scratch space and at the end we will copy the output back to our home space. To accomplish this add the necessary lines (below) to the file `first_batch.sh`
 
 ```
 cd $SLURM_SUBMIT_DIR
@@ -131,7 +141,9 @@ In a previous lesson we did a grid search on our workstations. Now we have acces
 Rscript ./R/digits_svm_IDE_gs.R &> ./output/svm_grid_search.out &
 ```
 
-Submit the script `first_batch.sh` and inspect the output. Compare the results with the ones you obtained on your workstation. A not so slight disappointment, isn't it. My workstation was almost 30% faster. The reason is that LISA still uses one core to solve your problem sequentially. And in my case the cores of LISA are slower than the cores on my workstation (a remarkably fast Mac Book). We need to do things in parallel and thats the topic of the next lesson
+Submit the script `first_batch.sh` and inspect the output. Compare the results with the ones you obtained on your workstation. A slight disappointment, isn't it? My workstation was almost 30% faster. The reason is that **Lisa** still uses one core to solve your problem sequentially. The cores of **Lisa** are slower than the cores on your workstation if that is a recent model. We need to do things in parallel to speed things up and that is the topic of the next lesson
+
+Go to [next lesson](./hpc_on_lisa.md) or to the [overview](./overview.md)
 
 
 

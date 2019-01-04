@@ -27,7 +27,7 @@ _<[course material](./intro_hpc.md)>_
 
 ### II. Example program in R: Recognizing Hand-written Digits with Machine Learning
 
-Throughout the workshop we will use a small Machine Learning (ML) program which can learn to recognize digitized handwritten digits. This is a rather famous example in Machine Learning. We will run an R script on your local computer and by doing so we will notice why & when we are in need of an HPC.
+Throughout the workshop we will use a small Machine Learning (ML) program which can learn to recognize digitized handwritten digits. This is a rather famous example in Machine Learning. We will run an R script on your local computer and by doing so we will notice "why & when" we are in need of an HPC.
 
 _<[course material](./intro_svm.md)>_
 

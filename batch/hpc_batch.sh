@@ -28,8 +28,8 @@ mkdir ./output
             # resulting in a longer lead time of the batch job
 
 Rscript ./R/digits_svm_hpc.R -C 0.25 -G 0.0625 &
-Rscript ./R/digits_svm_shell.R -C 0.125 -G 0.03125 &
-Rscript ./R/digits_svm_shell.R -C 0.5 -G 0.125 &
+Rscript ./R/digits_svm_hpc.R -C 0.125 -G 0.03125 &
+Rscript ./R/digits_svm_hpc.R -C 0.5 -G 0.125 &
 
             # Wait till all previous programs have ended, because we must copy all the
             # output files of the batch job back to the home space of the user

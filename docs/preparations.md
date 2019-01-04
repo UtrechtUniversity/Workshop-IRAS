@@ -6,11 +6,11 @@ As we said earlier, using an HPC isn't easy. You have to register your account, 
 
 ### Your Lisa login
 
-You have received your loginname and a password by email. Please change your password as instructed in the email. Make sure, that you can remember your password when logging in on **Lisa**. Keep in mind that the workshop teachers can't recover or reset your password.
+You have received your loginname and a password by email. Please change your password as instructed in the email in the [Surfnet portal](https://portal.surfsara.nl). Make sure, that you can remember your password when logging in on **Lisa**. Keep in mind that the workshop teachers can't recover or reset your password.
 
 ### Install MobaXterm (for Windows users)
 
-You need an application (tool) on your workstation to login on **Lisa**. You also have to tranfer files between your local workstation and  **Lisa**. For `windows` users we recommend to install [MobaXterm](https://mobaxterm.mobatek.net).
+You need an application (tool) on your workstation to login on **Lisa**. You also need a tool to tranfer files between your local workstation and  **Lisa**. For `windows` users we recommend to install [MobaXterm](https://mobaxterm.mobatek.net).
 
 The website of Mobatek has instructive [videos](https://mobaxterm.mobatek.net/demo.html) on how to login on a remote machine. 
 
@@ -24,7 +24,7 @@ To login at **Lisa** search with spotlight for the app `terminal`. Drag the appl
 ssh your_login@lisa.surfsara.nl
 ```
 
-You will be prompted for your password. If your credentials are correct the command prompt of **LISA** will be shown. The command line syntax on **LISA** is almost the same as the syntax on your Mac. To the user _macOS_ looks very similar to _Linux_.
+You will be prompted for your password. If your credentials are correct the command prompt of **Lisa** will be shown. The command line syntax on **Lisa** is almost the same as the syntax on your Mac. To the user _macOS_ looks very similar to _Linux_.
 
 To transfer files to and from **Lisa** you need a file browser. We recommend [Cyberduck] (https://cyberduck.io). After installing Cyberduck click on _Open Connection_ and fill out the form. See figure below.
 
@@ -33,14 +33,14 @@ To transfer files to and from **Lisa** you need a file browser. We recommend [Cy
 
 ### Upload course material to **Lisa**
 
-Earlier in this workshop you have downloaded the course material to your workstation. With the new filebrowser installed (MobaXterm or Cyberduck) you can upload these files to **Lisa**. Upload the folder `Workshop-IRAS` on your workstation to **Lisa**. In your home directory on **Lisa** there now must also be a directory `Workshop-IRAS` with all the subdirectories and files. Check! 
+Earlier in this workshop you have downloaded the course material to your workstation. With the new filebrowser installed (MobaXterm or Cyberduck) you can upload these files to **Lisa**. Upload the folder `Workshop-IRAS` on your workstation to **Lisa**. Now, in your home directory on **Lisa** there must be a directory `Workshop-IRAS` with all the subdirectories and files. Check! 
 
 ### Editing files on **Lisa**
 
-You probably are acustomed to using RStudio to edit your R files. With RStudio you can also edit other `text` files. On LISA there is no RStudio or any other windows oriented editor like `Notepad` or `Xcode`. Linux editors like `vim` are very versatile, but hard to learn. It would take days to master these editors. For this course we will edit the files on your workstation.
+You probably are acustomed to using RStudio to edit your R files. With RStudio you can also edit other `text` files. On LISA there is no RStudio or any other windows oriented editor like `Notepad` or `Xcode`. Linux editors like `vim` are very versatile, but hard to learn. It would take days to master these editors. For this course we will edit all the files on your workstation.
 
 _For macOS users:_
-If you right click on a file in your file browser you can select `Edit with` and then select an editor. In the preferences of Cyberduck you can install a default editor (e.g. RStudio). If you save the file it will be transferred back to **Lisa**, but if you change the filename it will be stored oin your workstation.
+If you right click on a file in your Cyberduck file browser you can select `Edit with` and then select an editor. In the preferences of Cyberduck you can install a default editor (e.g. RStudio). If you save the file it will be transferred back to **Lisa**, but if you change the filename it will be stored on your workstation.
 
 _For Windows users:_
 
@@ -48,7 +48,7 @@ _For Windows users:_
 
 ### Useful Linux commands
 
-Allthough we try to avoid working on the commandline of Lisa as much as possible, it is unsurmountable that, sometimes, you will have to. On internet are lots of pages explaining the Linux commands. The most useful commands for our purpose are:
+Allthough we try to avoid working on the commandline of Lisa as much as possible, it is unsurmountable that you will have to sometimes. On internet there are lots of sites explaining the Linux commands. The most useful commands for our purpose are:
 
 `pwd` : print current working directory
 
@@ -70,11 +70,11 @@ Allthough we try to avoid working on the commandline of Lisa as much as possible
 
 During the lessons we will show you some examples how to use these commands.
 
-We also have [An introduction](./intro_linux.md).
+We also have [An introduction](./intro_linux.md). Take a while to do the exercises in this introduction
 
 ### How to install R packages on **Lisa**
 
-On LISA many commonly used packages are pre-installed. [See this link](https://userinfo.surfsara.nl/systems/lisa/software/r). If an package isn't pre-installed, you have to do it yourself and that's on LISA not as easy as with RStudio on your workstation. The package `tidyverse` is not pre-installed, so we use this package to show you how to install R packages on **Lisa**.
+On LISA many commonly used packages are pre-installed. [See this link](https://userinfo.surfsara.nl/systems/lisa/software/r). If an package isn't pre-installed, you have to do it yourself and that's on **Lisa** a little bit different than in RStudio on your workstation. The package `tidyverse` is not pre-installed, so we use this package to show you how to install R packages on **Lisa**.
 
 At the command prompt of **Lisa** type:
 
@@ -88,7 +88,7 @@ It starts an interactive R shell and at the prompt you can type R statements. Ty
 install.packages("tidyverse")
 ```
 
-The system will ask for a CRAN mirror. Type 0 or 8. Maybe R will suggest a directory to store the packages. Confirm this suggestion. It will store the package in your user space. So it will be available (`library(tidyverse)`) in subsequent R sessions.
+The system will ask for a CRAN mirror. Type 0 or 8. Maybe R will suggest a directory to store the packages. Confirm this suggestion. It will store the package in your user space. So it will be available with `library(tidyverse)` in subsequent R sessions.
 
 ### The next step
 

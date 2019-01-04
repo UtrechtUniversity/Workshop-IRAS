@@ -17,9 +17,9 @@ train_targets <- as.factor(train_set[[65]])
 
 # How does an image look like?
 mnist_image   <- matrix(as.numeric(train_images[230,]), nrow=8, ncol=8, byrow = TRUE)
-mnist_label   <- train_targets[230] 
-plot(as.raster(mnist_image/16))
+mnist_label   <- train_set[[65]][230]
 cat("The plotted digit has been labeled as a(n): ", mnist_label, "\n") 
+plot(as.raster(mnist_image/16))
 
 
 # The digits dataset for testing
