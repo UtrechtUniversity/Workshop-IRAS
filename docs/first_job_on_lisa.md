@@ -135,7 +135,7 @@ Submit the batch file and check if all went well.
 
 #### Doing a grid search with LISA
 
-In a previous lesson we did a grid search on our workstations. Now we have access to a supercomputer. Will the grid search run faster? Let's check by chanching the line with `Rscript` in the file `first_batch.sh` to contain the R script for the grid search.
+In a previous lesson we did a grid search on our workstations. Now we have access to a supercomputer. Will the grid search run faster? Let's check by changing the line with `Rscript` in the file `first_batch.sh` to contain the R script for the grid search.
 
 ```
 Rscript ./R/digits_svm_IDE_gs.R &> ./output/svm_grid_search.out &
