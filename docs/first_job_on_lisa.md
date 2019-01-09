@@ -21,7 +21,7 @@ So from now on, we are going to use the batch scheduler.
 
 ### SLURM: the batch scheduler on LISA
 
-With the `sbatch` command, you tell the scheduler to run a job some time in the near future. To fullfill it's obligations the scheduler has to know a few things. First, which programs have to be executed and, second, what resources are needed. We specify those settings in a so called batch file. In the `batch` folder the batch file `first_batch.sh` contains the following lines
+With the `sbatch` command, you tell the scheduler to run a job some time in the near future on a batch node. To fullfill it's obligations the scheduler has to know a few things. First, what resources are needed and, second, which programs have to be executed. We specify those settings in a so called batch file. In the `batch` folder the batch file `first_batch.sh` contains the following lines
 
 ```
 #!/bin/bash           
@@ -91,7 +91,7 @@ And also in the `output` directory. How?
 
 #### Notify user when job has started and ended
 
-The jobs in this workshop are very small and nearly all the time they will run almost immediately. But when the time your jobs remain in the queue and/or the lead times of the jobs will take hours (days), you can't repeatedly running `squeue` at the terminal. It would be nice if the scheduler would send you a email when the job  starts and ends.
+The jobs in this workshop are very small. The scheduler give priority to small jobs to make testing and debugging less time consuming.Therefore, the jobs we submit here will often run almost immediately. When you work with larger jobs with many resources, it can take hours or even days before a job starts/finishes. To be able to follow the progress of your job without login in to Lisa all the time, you can instruct the scheduler to send you an email when the job starts and ends.
 
 Add to the batch file `first_batch.sh` the following 2 lines.
 
@@ -100,7 +100,7 @@ Add to the batch file `first_batch.sh` the following 2 lines.
 #SBATCH --mail-user=<your email address>
 ```
 
-Run submit the batch job and check wether you have received the two email messages
+Run submit the batch job and check whether you have received the two email messages
 
 
 #### Using **scratch** space
