@@ -5,7 +5,7 @@
 #SBATCH -t 00:05:00       # for 5 minutes
 #SBATCH -J IRAS           # and use 'IRAS' as name of the job
 #SBATCH --mail-type=BEGIN,END
-#SBATCH --mail-user=k.vaneijden@gmail.com
+#SBATCH --mail-user=<emailaddress>
 
     # When a node is available, the system logins at the node impersonating
     # the user who has submitted this batch script
