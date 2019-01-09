@@ -1,7 +1,7 @@
 # Recognize written digits with Support Vector Machines
 # 
 # Call:
-#   Rscript ./R/digits_svm_shell.R -C <value for 'cost'> -G <value for 'gamma'>
+#   Rscript ./R/digits_svm_hpc.R -C <value for 'cost'> -G <value for 'gamma'>
 # 
 # Arguments:
 #     -C:     Penalty parameter C of the error term.
