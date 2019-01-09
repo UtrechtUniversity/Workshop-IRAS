@@ -35,7 +35,7 @@ make_batch_file <- function (parameters, n_cores = 15) {
     writeLines("#SBATCH -n 16", fbatch)               # number of cores in a node
     writeLines("#SBATCH -J IRAS", fbatch)
     writeLines("#SBATCH --mail-type=BEGIN,END", fbatch)
-    writeLines("#SBATCH --mail-user=k.vaneijden@uu.com", fbatch)
+    writeLines("#SBATCH --mail-user=<email address>", fbatch)
   
     # Instructions for file handling and loading R
     #
