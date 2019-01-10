@@ -12,11 +12,11 @@ From Wikipedia:
 >decisions on new data without being explicitly programmed to perform
 >the task.
 
-Lineair regression is an simple form of machine learning. Although, probably, you have used `lm` for hypothesis testing. But if you have established the `intercept a` and the `slope b`, you have a model to predict a new dependent variable `y'` when you fill a new independent variable `x'` into the formula `y' = a + b*x'`
+Lineair regression can be considered as a simple form of machine learning. Probably you have used linear regression (the `lm` command in R) for hypothesis testing. When you have established the `intercept a` and the `slope b`, you have a model to predict a new dependent variable `y'` when you fill a new independent variable `x'` into the formula `y' = a + b*x'`
 
 ![_Lineair Regression_](./pictures/lineair_regression.png)
 
-Another type of machine learning is a Neural Network which, at the moment, has widely attracted full attention of scientists in all kinds of disciplines. But we are going to use another very powerfull Machine Learning algorithme: **Support Vector Machines (SVM)**
+Another type of machine learning is a Neural Network which, at the moment, has widely attracted full attention of scientists in all kinds of disciplines. But we are going to use another very powerfull Machine Learning algorithm: **Support Vector Machines (SVM)**
 
 The idea behind SVM is to represent the observations or samples as points in a p-dimensional space and, then, to find the p-1 dimensional plane which creates the greatest separation between the points according to some classification. See picture below for a 2-dim case; higher dimensions are difficult to draw. Hyperplane H3 best divides the black and white points.
 
@@ -48,7 +48,7 @@ install.packages('tidyverse')  # functions for data cleaning
 install.packages('e1071')      # functions for modeling/training with SVM
 install.packages('raster')     # raster data structure 
 ```
-Choose in RStudio as working directory the folder Workshop-IRAS in which the contents of the repo is copied.
+In RStudio, choose as working directory the folder Workshop-IRAS in which the contents of the repo is copied.
 
 ```
 setwd("<path to folder>/Workshop-IRAS/")
@@ -56,7 +56,7 @@ setwd("<path to folder>/Workshop-IRAS/")
 
 ### Train one SVM model on the famous MNIST dataset
 
-Open the file `./R/digits_svm_IDE.R` in the _source panel_ of RStudio. Go step by step (ctrl-R) through the code and see what happens. Read the comments in the code. The model was trained in ~7 seconds and has an accuracy of ~85%. 
+Open the file `./R/digits_svm_IDE.R` in the _editor_ of RStudio. Go step by step (ctrl-R) through the code and see what happens. Read the comments in the code. The model was trained in ~7 seconds and has an accuracy of ~85%. 
 
 If a mail sorting process of a postal service would have such an accuracy in recognizing hand-written digits, that company should close its doors.
 
@@ -66,7 +66,7 @@ To find a better accuracy, we are going to do a grid search. Several combination
 
 Load the file `./R/digits_svm_IDE_gs.R` in the _source pane_ of RStudio. Run the programm step by step (Ctrl-R)
 
-We have now found a better model with accuray of ~97%. Which in fact is still pretty worse if you are running a fully automated postal service.
+We have now found a better model with accuray of ~97%. Which in fact is still pretty bad if you would want to run a fully automated postal service.
 
 We have tried 12 hyperparameter settings and it took ~ 50 seconds. It's probably not a problem for you to wait a minute. 
 
@@ -76,11 +76,11 @@ The nice thing about this kind of ML programs is that every model setting can be
 
 If we want to do a grid search with n parameter settings and we have to run the models sequentially, the lead time will be `n * D` where D (duration) is the time needed for training one model. But if we have N machines (cores), we can set up N streams in parallel and the lead time will be reduced with a factor of approximately `n/N`.
 
-And that are we going to explore on LISA. A super computer with ~7500 cores, alltough we aren't going to use them all.
+We are going to explore this on LISA, a super computer with ~7500 cores, although we aren't going to use them all.
 
-So many cores on one machine is a huge advantage, but a super computer has also disadvantages. For instance you don't have a nice _interactive development environment (IDE)_ as RStudio on Lisa. How then are you going to run jobs?
+So many cores on one machine is a huge advantage, but a super computer also has disadvantages. For instance you don't have a nice _interactive development environment (IDE)_ as RStudio on Lisa. But how do we run R code on Lisa?
 
-That you will learn in the next lesson. [Go back to the overview](./overview.md) or go [to the next lesson](./preparations.md).
+You will learn that in the next lesson. [Go back to the overview](./overview.md) or go [to the next lesson](./preparations.md).
 
 
 
