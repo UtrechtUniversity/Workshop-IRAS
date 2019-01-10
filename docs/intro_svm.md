@@ -78,7 +78,7 @@ If we want to do a grid search with n parameter settings and we have to run the 
 
 We are going to explore this on LISA, a super computer with ~7500 cores, although we aren't going to use them all.
 
-So many cores on one machine is a huge advantage, but a super computer also  disadvantages. For instance you don't have a nice _interactive development environment (IDE)_ as RStudio on Lisa. But how do we run R code on Lisa?
+So many cores on one machine is a huge advantage, but a super computer also has disadvantages. For instance you don't have a nice _interactive development environment (IDE)_ as RStudio on Lisa. But how do we run R code on Lisa?
 
 You will learn that in the next lesson. [Go back to the overview](./overview.md) or go [to the next lesson](./preparations.md).
 
