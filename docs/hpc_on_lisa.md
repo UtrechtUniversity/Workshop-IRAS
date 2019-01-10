@@ -88,3 +88,4 @@ After all the tasks have produced their results, it's time to collect them in on
 Rscript ./R/collect_svm.R
 ```
 
+Now you should be able to run a pleasingly parallel computation on **Lisa**. Return to the [overview](./overview.md) page to see what the next topics of this workshop are.
