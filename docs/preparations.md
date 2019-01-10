@@ -6,7 +6,7 @@ As we said earlier, using an HPC isn't easy. You have to register your account, 
 
 ### Your Lisa login
 
-You have received your loginname and a password by email. Please change your password as instructed in the email in the [Surfnet portal](https://portal.surfsara.nl). Make sure, that you can remember your password when logging in on **Lisa**. Keep in mind that the workshop teachers can't recover or reset your password.
+You have received your loginname and a password by email. Please change your password as instructed in the email in the [Surfnet portal](https://portal.surfsara.nl). Make sure that you can remember your password when logging in on **Lisa**. Keep in mind that the workshop teachers can't recover or reset your password.
 
 ### Install MobaXterm (for Windows users)
 
@@ -14,7 +14,7 @@ You need an application (tool) on your workstation to login on **Lisa**. You als
 
 The website of Mobatek has instructive [videos](https://mobaxterm.mobatek.net/demo.html) on how to login on a remote machine. 
 
-Your remote host is `lisa.surfsara.nl` and you should use the login name you have received from SURFsara and the password you have entered when changing to original password. After you have succesfully logged in with MobaXterm, you see a command prompt in the right pane and a file browser in the left pane. In the right pane (a.k.a. _terminal pane_) you can enter commands to the **Lisa** system. The left pane you can use for uploading and downloading files.
+Your remote host is `lisa.surfsara.nl` and you should use the login name you have received from SURFsara and the password you have entered when you have changed the original password. After you have succesfully logged in with MobaXterm, you see a command prompt in the right pane and a file browser in the left pane. In the right pane (a.k.a. _terminal pane_) you can enter commands to the **Lisa** system. The left pane you can use for uploading and downloading files.
 
 ### Install Cyberduck (for mac users)
 
@@ -33,22 +33,23 @@ To transfer files to and from **Lisa** you need a file browser. We recommend [Cy
 
 ### Upload course material to **Lisa**
 
-Earlier in this workshop you have downloaded the course material to your workstation. With the new filebrowser installed (MobaXterm or Cyberduck) you can upload these files to **Lisa**. Upload the folder `Workshop-IRAS` on your workstation to **Lisa**. Now, in your home directory on **Lisa** there must be a directory `Workshop-IRAS` with all the subdirectories and files. Check! 
+Earlier in this workshop you have downloaded the course material to your workstation. With the new filebrowser installed (MobaXterm or Cyberduck) you can upload these files to **Lisa**. Upload the folder `Workshop-IRAS` on your workstation to **Lisa**. In MobaXterm it is easiest to upload the .zip folder as it is not possible, to upload the entire folder via the file browser in the left pane. On Lisa you can simply unzip the folder using the `unzip Workshop-IRAS.zip` command. Now, in your home directory on **Lisa** there must be a directory `Workshop-IRAS` with all the subdirectories and files. Check! 
 
 ### Editing files on **Lisa**
 
-You probably are acustomed to using RStudio to edit your R files. With RStudio you can also edit other `text` files. On LISA there is no RStudio or any other windows oriented editor like `Notepad` or `Xcode`. Linux editors like `vim` are very versatile, but hard to learn. It would take days to master these editors. For this course we will edit all the files on your workstation.
+You probably are accustomed to using RStudio to edit your R files. With RStudio you can also edit other `text` files. On LISA there is no RStudio or any other windows oriented editors like `Notepad` or `Xcode`. Linux editors like `vim` are very versatile, but hard to learn. It would take days to master these editors. For this course we will edit all the files on your workstation.
 
 _For macOS users:_
 If you right click on a file in your Cyberduck file browser you can select `Edit with` and then select an editor. In the preferences of Cyberduck you can install a default editor (e.g. RStudio). If you save the file it will be transferred back to **Lisa**, but if you change the filename it will be stored on your workstation.
 
 _For Windows users:_
 
-[Jelle & Mariana help me?]
+In MobaXterm, simply double click a file in the file browser in the left pane. A **Windows** program (such as RStudio) will open to edit the file. If you save the file it will be transferred back to **Lisa**, but if you change the filename it will be stored on your workstation.
+
 
 ### Useful Linux commands
 
-Allthough we try to avoid working on the commandline of Lisa as much as possible, it is unsurmountable that you will have to sometimes. On internet there are lots of sites explaining the Linux commands. The most useful commands for our purpose are:
+Although we try to avoid working on the commandline of Lisa as much as possible, it is unavoidable that you will have to use a couple of Linux commands. On internet there are lots of sites explaining the Linux commands. The most useful commands for our purpose are:
 
 `pwd` : print current working directory
 
@@ -74,7 +75,7 @@ We also have [An introduction](./intro_linux.md). Take a while to do the exercis
 
 ### How to install R packages on **Lisa**
 
-On LISA many commonly used packages are pre-installed. [See this link](https://userinfo.surfsara.nl/systems/lisa/software/r). If an package isn't pre-installed, you have to do it yourself and that's on **Lisa** a little bit different than in RStudio on your workstation. The package `tidyverse` is not pre-installed, so we use this package to show you how to install R packages on **Lisa**.
+On LISA many commonly used packages are pre-installed. [See this link](https://userinfo.surfsara.nl/systems/lisa/software/r). If a package isn't pre-installed, you have to do it yourself and that's on **Lisa** a little bit different than in RStudio on your workstation. The package `tidyverse` is not pre-installed, so we use this package to show you how to install R packages on **Lisa**.
 
 At the command prompt of **Lisa** type:
 
