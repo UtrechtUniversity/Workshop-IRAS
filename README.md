@@ -9,6 +9,3 @@ This repo contains all the documents, scripts and data files used in the worksho
 The next workshop sessions are scheduled for researchers of IRAS on Januari 11 and 16, 2019. Sign up for this workshop before December 11, 2018 by sending an email to [Mariana Simões](mailto:m.simoes@uu.nl?subject=HPC%20Workshop%202019-01-11).
 
 Follow [this link](./docs/overview.md) for full description of objectives and contents of the workshop
-
-test
-
