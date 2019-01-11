@@ -51,13 +51,15 @@ In the previous chapter job submission scripts (or batch scripts) were introduce
 
 _<[course material for this lesson](./hpc_on_lisa.md)>_
 
-### VI. Start of second session: recap of lessons 1 to 5.
+### VI. Start of second sessions: recap of lessons I to V
 
-### VII. Running lots of small tasks
+### VII. Running many small tasks
 
 ### VIII. Parallel Programming in R
 
-### IX. Working on your own parallel program
+### IX. Combining parallel batch scripts with parallel R scripts
+
+### X. Working on your own parallel scripts (batch and/or R)
 
 ### X. Wrap up & Discussion
 
