@@ -23,6 +23,8 @@ test_targets <- as.factor(test_set[[65]])
 cost            <- c(2^-5, 2^-3, 2^-1, 2^0) # , 2^1, 2^3, 2^5, 2^7, 2^9, 2^11, 2^13, 2^15)
 gamma           <- c(2^-15, 2^-13, 2^-11) # , 2^-9, 2^-7, 2^-5, 2^-3, 2^-1, 2^1, 2^3 )
 hyperparameters <- expand.grid(cost = cost, gamma = gamma)
+head(hyperparameters, 10)
+
 trials          <- hyperparameters %>% mutate(accuracy = 0, duration = 0)
 
 

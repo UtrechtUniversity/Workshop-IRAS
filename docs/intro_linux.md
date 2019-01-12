@@ -131,15 +131,21 @@ If you type enough characters of a command or a filename to help the system iden
 In naming files, characters with special meanings such as `/ * & %` , should be avoided. Also, avoid using spaces within names. The safest way to name a file is to use only letters and numbers, together with _ (underscore) and . (dot). It is also good practise to give a file an extension indicating contents of the file. Only use capitals at the beginning. This file naming convention is known as *snake_case*. 
 
 **Good filenames**        
+
+```
 project.txt        # file contains text      
 Test_1.R           # file contains R code        
 Bert_ernie.csv     # file contains comma separated values
+```
 
 **Bad filenames**
+
+```
 project
 Test 1.m 
 Bert & Ernie.txt
 Bert_Ernie.R
+```
 
 
 ### Epilogue

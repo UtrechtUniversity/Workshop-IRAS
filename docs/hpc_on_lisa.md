@@ -32,7 +32,8 @@ In the `batch` directory there is a file named `hpc_batch.sh`. Open the file and
 Submit the batch script and wait for the output file. Before starting the batch script, maybe you should remove the `.out` files in the main directory and in the `output` subdirectory.
 
 ```
-sbatch ./batch/hpc_batch.sh 
+sbatch --reservation=iraspd ./batch/hpc_batch.sh
+sbatch ./batch/hpc_batch.sh
 squeue -u <your username>
 ```
 
@@ -87,5 +88,9 @@ After all the tasks have produced their results, it's time to collect them in on
 ```
 Rscript ./R/collect_svm.R
 ```
+
+Every job sends an email notifying you the job has ended. In this email also the actual run time is mentioned. The run time is pretty much the same as the run time of a single task. Because the jobs are started at different points in time the total lead time of the whole computation is much longer than the run time of one task. 
+
+Compared to running the tasks in a sequential way on a workstation the difference in lead time is less, but still there. For the largest part this is caused by the waiting times in the queue. But if the run time of one task increases also this difference will diminish. And, eventually, the lead time of the whole computation will be shorter. But in all cases the computations will not confiscate your workstation.
 
 Now you should be able to run a pleasingly parallel computation on **Lisa**. Return to the [overview](./overview.md) page to see what the next topics of this workshop are.

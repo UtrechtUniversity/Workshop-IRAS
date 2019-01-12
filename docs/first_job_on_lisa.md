@@ -52,8 +52,11 @@ wait
 With the `sbatch` commmand this job can be submitted to the scheduler. Type the following line at the command prompt. Be sure that your working directory is `Workshop-IRAS`
 
 ```
+sbatch --reservation=iraspd ./batch/first_batch.sh
 sbatch ./batch/first_batch.sh
 ```
+
+The first line only works during workshop hours. During those hours our jobs will be run almost immediately, because we have reserved nodes.
 
 The schedulers acknowledges the submission by replying with the job number.
 After submitting, you can inspect the status of your job in the queue with:
@@ -76,7 +79,7 @@ Rscript ./R/digits_svm_IDE.R &> ./output/digits_svm_IDE.out &
 
 The console output of R is now redirected to the file `digits_svm_IDE.out` in de subfolder `output`. It's quite common to store different types of files in separate subfolders (e.g. `R` scripts, `data` files, `batch` files, and `output` files).
 
-Run the batch script and check the output files. Notice that the scheduler, by using the job number, takes care that its output file doesn't overwrite those of its predecessors. Something we have to keep in mind for the output of our R script. 
+Run the batch script and check the output files. Notice that the scheduler, by using the job number, takes care that its output file doesn't overwrite those of previous jobs.
 
 Where is the output file of Rscript? Is the contents of this file as you expected?. Why is the output file of the batch scheduler (slurm) empty?
 
