@@ -16,12 +16,14 @@ In our example the training data consists of 3823 images (8*8 pixels and 16 grey
 
 In ML the input parameters are called **hyperparameters**. These paramaters alter the training algorithm in some way. In our example we have two paramaters 'cost' and 'gamma'. The meaning of these parameters is not relevant at the moment. Our problem is to find the combination of parameter values that gives the best model.
 
-In this case **best model** is the model with the highest **accuracy**. Every trained model is tested with a seperate dataset of 1797 labeled images. Here, accuracy is defined as the fraction of correct predicted digits. 
+In this case **best model** is the model with the highest **accuracy**. Every trained model is tested with a seperate dataset of 1797 labeled images. Here, accuracy has been defined as the fraction of correct predicted digits. 
 
 At the end we contruct a table giving for every parameter combination the accuracy. We could select the best model and use it on new unlabeled data. E.g.
 for recognizing zip codes in an automated postal service. But that is not our mission at the moment.
 
-Our job ends when we have constructed the accuracy table. Maybe you have already observed that the problem of finding the best model is **pleasingly parallel**.  We construct a **grid** of all parameter combinations and in this grid we **search** for the parameter combination that gives the best model. Hence the term **grid search**
+![_Predict_](./pictures/predict.png)
+
+Our job ends when we have constructed the accuracy table. Maybe you have already observed that the problem of finding the best model is **pleasingly parallel**.  We construct a **grid** of all parameter combinations and in this grid we **search** for the parameter combination that gives the best model. Hence the term **grid search**.
 
 
 ## Training a Support Vector Machine in RStudio on your local computer

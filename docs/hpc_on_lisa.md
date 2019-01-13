@@ -89,8 +89,8 @@ After all the tasks have produced their results, it's time to collect them in on
 Rscript ./R/collect_svm.R
 ```
 
-Every job sends an email notifying you the job has ended. In this email also the actual run time is mentioned. The run time is pretty much the same as the run time of a single task. Because the jobs are started at different points in time the total lead time of the whole computation is much longer than the run time of one task. 
+Every job sends an email to notify you when the job has ended. In this email also the actual run time is mentioned. The run time of a job is pretty much the same as the run time of a single task. Because the jobs are started at different points in time, the total lead time of the whole computation shall be longer than the run time of one task. But if the run time of one task increases this difference will play a lesser role in the total lead time of the whole computation.
 
-Compared to running the tasks in a sequential way on a workstation the difference in lead time is less, but still there. For the largest part this is caused by the waiting times in the queue. But if the run time of one task increases also this difference will diminish. And, eventually, the lead time of the whole computation will be shorter. But in all cases the computations will not confiscate your workstation.
+The same considerations apply when comparing with the run time on your workstation. But even if the run time on **Lisa**is not significantly less, your workstation remains available for other tasks (e.g. writing an article or project proposal). This phenomenom is called **offloading**
 
 Now you should be able to run a pleasingly parallel computation on **Lisa**. Return to the [overview](./overview.md) page to see what the next topics of this workshop are.
