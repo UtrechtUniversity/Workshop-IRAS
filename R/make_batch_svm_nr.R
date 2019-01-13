@@ -88,7 +88,7 @@ fsubmit       <- file(submit_script, open = "w")
 
 writeLines("#!/bin/bash", fsubmit)
 for ( n in 1:n_batch) {
-  submit_cmd <- sprintf("sbatch --reservation=iraspd ./batch/batch-%d.sh", n)
+  submit_cmd <- sprintf("sbatch ./batch/batch-%d.sh", n)
   writeLines(submit_cmd, fsubmit)
 }
 close(con = fsubmit)
