@@ -39,6 +39,12 @@ squeue -u <your username>
 
 Check if the results are stored in the `output` directory. Look also in the slurm output file  in the main directory. Do you notice anything different? Why has that happened?
 
+Also check the wall time and CPU efficiency with
+
+```
+seff <job number>
+```
+
 Feel free to run the batch script again with more tasks by adding more Rscript lines with other parameter settings. Could you run dozens, hundreds or even thousands of tasks that way? 
 Supposedly not. And how to solve this, is the topic of the next paragraph.
 
@@ -60,7 +66,7 @@ Open the file `make_batch_svm.R` in the `R` subdirectory. Read the code and comm
 
 Tip: you can run the script `make_batch_svm.R` in RStudio step-by-step to see what it does. 
 
-The batch files are made by the function `make_batch_file`. At the hand there is a little extra to make your life more convenient. It makes a submission script, so you don't have to type all the `sbatch` commands at the command line.
+The batch files are made by the function `make_batch_file`. At the end there is a little extra code  to make your life more convenient. It makes a submission script, so you don't have to type all the `sbatch` commands at the command line.
 
 If you are ready run the following command on **Lisa**.
 
@@ -68,18 +74,20 @@ If you are ready run the following command on **Lisa**.
 Rscript ./R/make_batch_svm.R
 ```
 
-Look in the subdirectory `batch` how many batch files there are present. You should also see the submission script. Run this script after removing `.out` and `.csv` files from the main directory and its subdirectory `output`.
+Look in the subdirectory `batch`. How many batch files there are present? You should also see the submission script. Run this script after removing `.out` and `.csv` files from the main directory and its subdirectory `output`.
 
 ```
 ./batch/submit_svm.sh
 squeue -u <your username>
 ```
 
-Check after a coffee or tea break whether all the 110 `.csv` files are present in the `output` directory.
+Check whether all the 110 `.csv` files are present in the `output` directory.
 
 ```
 ls ./output/*.csv | wc      # 'wc' counts lines, words and characters of the input
 ```
+
+Check for a few jobs the walltimes and cpu efficiciencies.
 
 ### Collecting and processing the results
 
@@ -89,7 +97,7 @@ After all the tasks have produced their results, it's time to collect them in on
 Rscript ./R/collect_svm.R
 ```
 
-Every job sends an email to notify you when the job has ended. In this email also the actual run time is mentioned (e.g. Run time 00:00:16). The run time of a job is pretty much the same as the run time of a single task. Because you have used 110 different processors for this job it is possible that you have your results much quicker than when you would have run them sequentially (which would take 6-10 minutes). This depends largely on how much time the job was in the queue. For such a short task you can imagine that the time in the queue is a very important determinant of the total lead time.  However, if the run time of one task increases this difference will play a lesser role in determining the total lead time of the whole computation, and you can reduce the computation time e.g. by a factor of 10 - 100.
+Every job sends an email to notify you when the job has ended. In this email also the actual run time (a.k.a. walltime) is mentioned (e.g. Run time 00:00:16). You can also check with `seff <job id>`. The run time of a job is pretty much the same as the run time of a single task. Because you have used 110 different processors for this job it is possible that you have your results much quicker than when you would have run them sequentially (which would take 6-10 minutes). This depends largely on how much time the job was in the queue. For such a short task you can imagine that the time in the queue is a very important determinant of the total lead time.  However, if the run time of one task increases this difference will play a lesser role in determining the total lead time of the whole computation, and you can reduce the computation time e.g. by a factor of 10 - 100.
 
 The same considerations apply when comparing with the run time on your workstation. But even if it is not possible to parallelize a job or the run time on **Lisa** is not significantly less, it can be still beneficial to run jobs on a cluster as your workstation remains available for other tasks (e.g. writing an article or project proposal). This phenomenom is called **offloading**
 
