@@ -6,20 +6,19 @@ output:
 
 ## Problem description
 
-In this workshop we use an example form Machine Learning, but Machine Learning is not the subject. Our subject is how to run many programs (or parts of programs) in parallel. Therefore the code that does the machine learning is considered as a **black box**. The box has a set of training data, some input parameters and one output (the model). See picture.
+In this workshop we use an example from Machine Learning. The goal of this lesson is how to run many programs (or parts of programs) in parallel, so it is not necessary to understand the principles of the Machine Learning algorithm. Therefore the code that does the machine learning is considered as a **black box**. The box has a set of training data that is used to estimate model parameters, some input parameters and one output (the model). See picture.
 
 ![_Train and Test_](./pictures/train_test.png)
 
-The type of models we are using is Support Vector Machines (SVM). If you are curious, see [intro ml]<./intro_ml.md> for more information. But it isn't necessary to know how SVM works.
+The type of models we are using is Support Vector Machines (SVM). If you are curious, see [intro ml](./intro_ml.md) for more information. But it isn't necessary to know how SVM works.
 
-In our example the training data consists of 3823 images (8*8 pixels and 16 grey levels) of hand-written digits. Of every image the digit it represents is known. In ML lingo we say that the training data is labeled. With these data the model is trained to recognize digits.
+In our example we will develop a model for an automated postal service that is able to recognize hand-written addresses. The training data consists of 3823 images of hand-written digits composed of 8x8 pixels and 16 grey levels. This training data is already classified, so from every image it is known which digit it represents. In ML language we say that the training data is labeled. With these data the model is trained to recognize digits.
 
 In ML the input parameters are called **hyperparameters**. These paramaters alter the training algorithm in some way. In our example we have two paramaters 'cost' and 'gamma'. The meaning of these parameters is not relevant at the moment. Our problem is to find the combination of parameter values that gives the best model.
 
 In this case **best model** is the model with the highest **accuracy**. Every trained model is tested with a seperate dataset of 1797 labeled images. Here, accuracy has been defined as the fraction of correct predicted digits. 
 
-At the end we contruct a table giving for every parameter combination the accuracy. We could select the best model and use it on new unlabeled data. E.g.
-for recognizing zip codes in an automated postal service. But that is not our mission at the moment.
+At the end we contruct a table showing the accuracy for every parameter combination. We will stop here, but from this table it is possible to select the best model and use it on new unlabeled data. E.g. for recognizing zip codes in an automated postal service.
 
 ![_Predict_](./pictures/predict.png)
 
