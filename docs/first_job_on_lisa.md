@@ -69,6 +69,14 @@ If you don't see a queue with your program it may have already been ended, becau
 
 In the the directory `Workshop-IRAS` there is a file `slurm-<job number>.out`. If you open this file you see the already well known output of your R script. This file will contain all output (e.g. warnings and errors) of all the commands in the batch file.
 
+If you wish to know how long it took **Lisa** to run your job, enter:
+
+```
+seff <job number>
+```
+
+It shows the `walltime` or run time of the job. The `CPU utilized` is the sum of the times that the individual cores were busy with your tasks. The `core-walltime` is `number of cores * walltime`. Hence, there is also a CPU effiency: `Cpu utilized / core-walltime`
+
 #### Sending output of R script to a separate file
 
 You can separate the console output of your R script from the other messages by sending (a.k.a. redirecting) the console output of Rscript to another file. In the file `first_batch.sh` alter the the line with Rscript command into:
