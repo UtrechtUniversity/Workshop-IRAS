@@ -69,4 +69,14 @@ cat("Total training time  : ", sum(trials$duration), "\n",
     "Average training time: ", mean(trials$duration), "\n",
     "Number of trials     : ", nrow(hyperparameters), "\n")
 
+p = ggplot(data = trials, aes(x = as.character(cost), y = as.character(gamma))) +
+  geom_tile(aes(fill = accuracy)) +
+  geom_text(aes(label = round(accuracy, 2)))+ 
+  scale_fill_gradient(low = "white", high = "red", trans="logit") 
+p = p + labs(x = "Cost")
+p = p + labs(y = "Gamma")
+p = p + scale_x_discrete(breaks=as.character(cost),
+                         labels=c("2^-5", "2^-3", "2^-1", "2^0"))
+p + scale_y_discrete(breaks=as.character(gamma),
+                     labels=c("2^-15", "2^-13", "2^-11"))
 
