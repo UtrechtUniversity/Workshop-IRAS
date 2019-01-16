@@ -1,6 +1,6 @@
 # Recognize hand written digits with Support Vector Machines
-# Parallelisation with 'mclapply' from package 'parallel'
-# 'mcapply' is the multicore version of 'lapply'
+# Parallelisation with 'parLapply' from package 'parallel'
+# 'parLapply' as the name suggests is parallel version of 'lapply'
 # Example of Parallel Programming in R
 #
 # Authors:      Roel Brouwer, Kees van Eijden, Jonathan de Bruin
@@ -51,7 +51,7 @@ cost            <- c(2^-5, 2^-3, 2^-1, 2^0, 2^1, 2^3, 2^5, 2^7, 2^9, 2^11, 2^13,
 gamma           <- c(2^-15, 2^-13, 2^-11, 2^-9, 2^-7, 2^-5, 2^-3, 2^-1, 2^1, 2^3 )
 hyperparameters <- expand.grid(cost = cost, gamma = gamma)
 
-# 'mcapply' work on lists not on data tables (c.f. 'lapply')
+# 'parLapply' works on lists not on data tables.
 #  Hence we construct a list of parameter combinations
 #
 hyper_list <- list()
@@ -61,12 +61,28 @@ for (c in cost) {
   }
 }
 
-# 'mcapply' works in the same way as 'lapply'. Only it doesn't run the tasks sequentially,
-# but divides the tasks over the assigned cores (parameter 'mc.cores')
-# 'detectCores' gives the number of cores on the node. We always reserve one core for
-# system tasks. The 'result_list' is a list of the return values of the function 'svm_wrapper'
+# Define a cluster and assign a number of cores
 #
-result_list <- mclapply(X = hyper_list, FUN = svm_wrapper, mc.cores = detectCores() - 1)
+cluster <- makeCluster(detectCores() - 1)
+
+# Each core of the cluster gets its own copy of the global variables which are used 
+# in the wrapper functions. The copies are real copies and will take up memory!
+clusterExport(cl = cluster,
+              varlist = c("train_images",
+                          "train_targets",
+                          "test_images",
+                          "test_targets"))
+
+# 'parApply' applies the wrapper function on each element of the list. Divides the tasks
+# among the cores and returns a list of results
+#
+result_list <- parLapply(cl =  cluster,
+                         X =   hyper_list,
+                         fun = svm_wrapper)
+
+# stop the cluster and release the memory it occupies
+#
+stopCluster(cluster)
 
 # Put the results back in the data table and write the table to a file
 #
@@ -75,4 +91,4 @@ for (i in 1:nrow(trials)) {
   trials$accuracy[i] <- result_list[[i]]
 }
 trials <- trials %>% arrange(desc(accuracy))
-write.csv(trials, "./output/digits_svm_mc.csv", row.names = FALSE)
+write.csv(trials, "./output/digits_svm_pl.csv", row.names = FALSE)

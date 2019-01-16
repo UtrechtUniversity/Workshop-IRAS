@@ -3,12 +3,16 @@
 # 'cost' and 'gamma'.
 # 
 # Usage:
-#   Rscript ./R/generate_batch1_svm.R [-N <integer> XOR -W <integer>] -T <integer>
+#   Rscript ./R/make_batch1_svm.R [-N <integer> XOR -W <integer>] -T <integer>
+#
+# Examples:
+#   Rscript ./R/make_batch1_svm.R -N 5 -T 20
+#   Rscript ./R/make_batch1_svm.R -W 100 -T 20
 #
 # Arguments:
 #   -N: number of batches (= number of nodes)
-#   -W: (max) walltime each script may take in seconds
-#   -T: time to completion of a task (training a model) in seconds
+#   -W: max. walltime each batch may take in seconds
+#   -T: time to completion of one task (training a model) in seconds
 # 
 # Details:
 #
@@ -30,7 +34,7 @@ opt <- getopt::getopt(
     ), 
     byrow=TRUE, ncol=4))
 
-# default values for options not specified
+# default values for options not specified by caller
 # depending on the situation at hand you could/should also check if given values are allowed
 
 if (( is.null(opt$nodes) && is.null(opt$walltime)) ||
@@ -63,8 +67,6 @@ completion <- opt$completion
 #
 
 make_batch_file <- function (parameters, node, walltime, n_cores) {
-
-
   
   # Write the batch commands to this file
   #
@@ -88,9 +90,9 @@ make_batch_file <- function (parameters, node, walltime, n_cores) {
   
   writeLines("#SBATCH -N 1", fbatch)
   writeLines("#SBATCH -n 16", fbatch)               # number of cores in a node
-  writeLines("#SBATCH -J IRAS", fbatch)
+  writeLines("#SBATCH -J IRAS1", fbatch)
   writeLines("#SBATCH --mail-type=BEGIN,END", fbatch)
-  writeLines("#SBATCH --mail-user=k.vaneijden@uu.com", fbatch)
+  writeLines("#SBATCH --mail-user=k.vaneijden@uu.nl", fbatch)
   
   # Instructions for file handling and loading R
   #
@@ -127,7 +129,7 @@ make_batch_file <- function (parameters, node, walltime, n_cores) {
 
 
   # hyperparameter value for the grid search
-cost            <- c(2^-5, 2^-3, 2^-1, 2^1, 2^3, 2^5, 2^7, 2^9, 2^11, 2^13, 2^15)
+cost            <- c(2^-5, 2^-3, 2^-1, 2^0, 2^1, 2^3, 2^5, 2^7, 2^9, 2^11, 2^13, 2^15)
 gamma           <- c(2^-15, 2^-13, 2^-11, 2^-9, 2^-7, 2^-5, 2^-3, 2^-1, 2^1, 2^3 )
 hyperparameters <- expand.grid(cost =  cost, gamma = gamma)
 
