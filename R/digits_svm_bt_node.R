@@ -10,6 +10,19 @@ library("e1071")
 library("batchtools")
 library("parallel")
 
+opt <- getopt::getopt(
+  matrix(
+    c('node', 'N', 1, "numeric"    # N is the node number assigned to this batch
+    ), 
+    byrow=TRUE, ncol=4))
+
+if (is.null(opt$node) || (opt$node < 1)) {
+  cat("Node number must be specified and larger than 0\n")
+  q(status = 1)
+}
+
+node <- opt$node 
+
 # The digits dataset (train dataset)
 train_set     <- read.csv("data/digits_trainset.csv", header= FALSE)
 train_images  <- train_set[1:64]
@@ -40,11 +53,16 @@ svm_wrapper <- function(cost, gamma) {
   return(data_frame(cost = cost, gamma = gamma, accuracy = accuracy))
 }
 
+# the hyperparameters for this batch (node)
 
-# hyperparameter: grid search
-cost            <- c(2^-5, 2^-3, 2^-1, 2^0, 2^1, 2^3, 2^5, 2^7, 2^9, 2^11, 2^13, 2^15)
-gamma           <- c(2^-15, 2^-13, 2^-11, 2^-9, 2^-7, 2^-5, 2^-3, 2^-1, 2^1, 2^3 )
-hyperparameters <- expand.grid(cost = cost, gamma = gamma)
+# Read all the parameter combinations
+#
+hyperparameters <- read.csv("./data/digits_svm_bt_parameters.csv")
+
+# Select the combinations for this node
+#
+hyperparameters <- hyperparameters %>% filter(node_id == node) %>% select(cost, gamma)
+
 
    # For bookkeeping purposes a registry must be made. All the batchtool functions
    # will store their settings, parameters, and results in the registry 
@@ -96,11 +114,16 @@ trials <- batchtools::reduceResults(fun =  rbind,
 
 
 trials <- trials %>% arrange(desc(accuracy))
-write.csv(trials, "./output/digits_svm_bt.csv", row.names = FALSE)
+trials[1]
+
+  # write out the results of this batch/node
+  #
+output_file <- sprintf("./output/digits_svm_bt_%d.csv", node)
+write.csv(x = trials, file = output_file, row.names = FALSE)
 
   # clean up the registry
   #
-#batchtools::clearRegistry(reg = registry)
+batchtools::clearRegistry(reg = registry)
 
 
 
