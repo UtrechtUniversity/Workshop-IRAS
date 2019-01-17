@@ -30,5 +30,16 @@ cat(best_model)
 cat("Do find all the results in file digits_svm.csv\n")
 write.csv(trials, "digits_svm.csv", row.names = FALSE)
 
-
+png(filename="./results.png")
+p = ggplot(data = trials, aes(x = as.character(cost), y = as.character(gamma))) +
+  geom_tile(aes(fill = accuracy)) +
+  geom_text(aes(label = round(accuracy, 2)))+ 
+  scale_fill_gradient(low = "white", high = "red", trans="logit") 
+p = p + labs(x = "Cost")
+p = p + labs(y = "Gamma")
+p = p + scale_x_discrete(limits=as.character(sort(unique(trials$cost),decreasing = FALSE)),
+                         labels=c("2^-5", "2^-3", "2^-1", "2^1", "2^3", "2^5", "2^7", "2^9", "2^11", "2^13", "2^15"))
+p + scale_y_discrete(limits=as.character(sort(unique(trials$gamma),decreasing = FALSE)),
+                     labels=c("2^-15", "2^-13", "2^-11", "2^-9", "2^-7", "2^-5", "2^-3", "2^-1", "2^1", "2^3") )
+dev.off()
 

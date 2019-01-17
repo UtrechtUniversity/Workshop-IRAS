@@ -52,8 +52,11 @@ wait
 With the `sbatch` commmand this job can be submitted to the scheduler. Type the following line at the command prompt. Be sure that your working directory is `Workshop-IRAS`
 
 ```
+sbatch --reservation=iraspd ./batch/first_batch.sh
 sbatch ./batch/first_batch.sh
 ```
+
+The first line only works during workshop hours. During those hours our jobs will be run almost immediately, because we have reserved nodes.
 
 The schedulers acknowledges the submission by replying with the job number.
 After submitting, you can inspect the status of your job in the queue with:
@@ -66,6 +69,14 @@ If you don't see a queue with your program it may have already been ended, becau
 
 In the the directory `Workshop-IRAS` there is a file `slurm-<job number>.out`. If you open this file you see the already well known output of your R script. This file will contain all output (e.g. warnings and errors) of all the commands in the batch file.
 
+If you wish to know how long it took **Lisa** to run your job, enter:
+
+```
+seff <job number>
+```
+
+It shows the `walltime` or run time of the job. The `CPU utilized` is the sum of the times that the individual cores were busy with your tasks. The `core-walltime` is `number of cores * walltime`. Hence, there is also a CPU effiency: `Cpu utilized / core-walltime`
+
 #### Sending output of R script to a separate file
 
 You can separate the console output of your R script from the other messages by sending (a.k.a. redirecting) the console output of Rscript to another file. In the file `first_batch.sh` alter the the line with Rscript command into:
@@ -76,7 +87,7 @@ Rscript ./R/digits_svm_IDE.R &> ./output/digits_svm_IDE.out &
 
 The console output of R is now redirected to the file `digits_svm_IDE.out` in de subfolder `output`. It's quite common to store different types of files in separate subfolders (e.g. `R` scripts, `data` files, `batch` files, and `output` files).
 
-Run the batch script and check the output files. Notice that the scheduler, by using the job number, takes care that its output file doesn't overwrite those of its predecessors. Something we have to keep in mind for the output of our R script. 
+Run the batch script and check the output files. Notice that the scheduler, by using the job number, takes care that its output file doesn't overwrite those of previous jobs.
 
 Where is the output file of Rscript? Is the contents of this file as you expected?. Why is the output file of the batch scheduler (slurm) empty?
 

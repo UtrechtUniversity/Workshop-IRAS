@@ -89,7 +89,7 @@ It starts an interactive R shell and at the prompt you can type R statements. Ty
 install.packages("tidyverse")
 ```
 
-The system will ask for a CRAN mirror. Type 0 or 8. Maybe R will suggest a directory to store the packages. Confirm this suggestion. It will store the package in your user space. So it will be available with `library(tidyverse)` in subsequent R sessions.
+The system will ask for a CRAN mirror. Type 1 or 8. Maybe R will suggest a directory to store the packages. Confirm this suggestion. It will store the package in your user space. So it will be available with `library(tidyverse)` in subsequent R sessions.
 
 ### The next step
 
