@@ -59,13 +59,40 @@ We would also like to give you a preview of the second session
 
 ### Lesson 7: Start of second sessions: recap of lessons I to V
 
-### Lesson 8: Running many small tasks
+<< nog invullen >>
+
+Login on Lisa. You have to install new scripts. Type to the prompt the following commands:
+
+```
+rm -r Workshop-IRAS       # removes the folder Workshop-IRAS and
+                          # everything in it
+ls                        # Workshop-IRAS should not be in the list
+git clone https://github.com/UtrechtUniversity/Workshop-IRAS.git
+ls                        # Workshop-RAS should be listed again
+```
+
+
+### Lesson 8: Running many small tasks revisited
+
+In lesson 5 you have learned how to run dozens of small tasks in parallel. We asked the scheduler for 6 nodes of 15 cores each. Each task had it's own dedicated core. Lisa has ~420 nodes / ~7.000 cores, hence to give you 6 nodes (= 120 cores) wasn't a problem. But what to do when you are working on a smaller cluster and you have far more tasks to run? Then you probably can't give each task it's own core. Another problem arises, when a system would charge you a start up fee per node besides charges for the walltime. Then it could be wiser to use a node longer than the ~20 seconds as we did. In this lesson we show you how to control the number of nodes or the walltime of a job.
+
+_<[course material](./nodes_vs_walltime.md)>_
 
 ### Lesson 9: Parallel Programming in R
 
+Untill now we have been dealing with **pleasingly parallel** jobs. We had one program that we ran many times with different parameter settings. The R program itself was strictly sequential and used one core. But often you can also parallelize parts of your programs too. E.g. when you use `for-loops` or when you apply functions over a list (`lapply`). These constructs are candidates for parallelisation. In this lesson we teach you how!
+
+_<[course material](./Parallel_programming_R.md)>_
+
 ### Lesson 10: Combining parallel batch scripts with parallel R scripts
 
+Finally, we combine both types of parallelism. We split the table with the parameter combinations in chunks of tasks. Each chunck will be submitted to a node and the R program will decide how to run the tasks in the assigned chunk.
+
+_<[course material](./chunks.md)>_
+
 ### Lesson 11 Working on your own parallel scripts (batch and/or R)
+
+When there is time left, you can start working on a parallel program of your own. We will be there to help you on your way. Your login will be available for another 2 weeks. If you want a prolongation of your account, send us an email at <info.rdm@uu.nl>.
 
 ### Lesson 12 Wrap up & Discussion
 
