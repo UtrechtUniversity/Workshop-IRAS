@@ -1,7 +1,7 @@
 library(tidyverse)
 
 # make list of all the output files of each task
-data_file_pattern <- sprintf("^digits_svm_bt.*\\.csv$")
+data_file_pattern <- sprintf("^digits_svm_bt_node_.*\\.csv$")
 data_files        <- list.files(path =       "output/",
                                 pattern =     data_file_pattern,
                                 full.names =  TRUE)

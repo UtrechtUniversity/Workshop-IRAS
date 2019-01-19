@@ -1,5 +1,13 @@
-# Recognize written digits with Support Vector Machines
-# Parallel programming in R with the package batchtools
+# Recognize hand-written digits with Support Vector Machines
+# Parallel programming in R with the package batchtools.
+# Designed to work on one node of a cluster as part of a multthe i node grid search
+# 
+# Usage:
+#   Rscript ./R/digits_svm_bt_node.R -N <integer>
+#
+# Arguments:
+#   -N: node number in multi node grid search. Used to select the parameter settings for
+#       chunk of tasks
 #
 # Authors:      Roel Brouwer, Kees van Eijden, Jonathan de Bruin
 #
@@ -53,7 +61,7 @@ svm_wrapper <- function(cost, gamma) {
   return(data_frame(cost = cost, gamma = gamma, accuracy = accuracy))
 }
 
-# the hyperparameters for this batch (node)
+# the hyperparameters for this node
 
 # Read all the parameter combinations
 #
@@ -114,11 +122,12 @@ trials <- batchtools::reduceResults(fun =  rbind,
 
 
 trials <- trials %>% arrange(desc(accuracy))
-trials[1]
 
-  # write out the results of this batch/node
+  # write out the results of this node
+  # appends the node number to the filename to distuingish from 
+  # outputfiles of other nodes
   #
-output_file <- sprintf("./output/digits_svm_bt_%d.csv", node)
+output_file <- sprintf("./output/digits_svm_bt_node_%d.csv", node)
 write.csv(x = trials, file = output_file, row.names = FALSE)
 
   # clean up the registry

@@ -79,13 +79,16 @@ batchtools::batchMap(fun =  svm_wrapper,
   # at our disposal.
   # Unfortunately, batchtools uses the term 'job' where we are using 'task'
   #
+clock_start <- Sys.time()
 res <- batchtools::submitJobs(reg = registry)
 
   # Depending on the machine 'submitJobs' will not wait for the tasks
   # to end. To be sure we wait a while
   #
 batchtools::waitForJobs(reg = registry)
-
+clock_end <- Sys.time()
+duration  <- as.numeric(clock_end - clock_start)
+print(duration)
   # reduceResults combines (reduces) the results of the tasks
   # How to combine (reduce) is up to the user.
   # Here we choose to 'rbind' into one 'data_frame'
@@ -100,7 +103,8 @@ write.csv(trials, "./output/digits_svm_bt.csv", row.names = FALSE)
 
   # clean up the registry
   #
-#batchtools::clearRegistry(reg = registry)
+batchtools::clearRegistry(reg = registry)
+
 
 
 

@@ -73,9 +73,11 @@ clusterExport(cl = cluster,
                           "test_images",
                           "test_targets"))
 
-# 'parApply' applies the wrapper function on each element of the list. Divides the tasks
+# 'parApply' applies the wrapper function to each element of the list. Divides the tasks
 # among the cores and returns a list of results
 #
+clock_start <- Sys.time()
+
 result_list <- parLapply(cl =  cluster,
                          X =   hyper_list,
                          fun = svm_wrapper)
@@ -83,6 +85,10 @@ result_list <- parLapply(cl =  cluster,
 # stop the cluster and release the memory it occupies
 #
 stopCluster(cluster)
+
+clock_end <- Sys.time()
+duration  <- as.numeric(clock_end - clock_start)
+print(duration)
 
 # Put the results back in the data table and write the table to a file
 #
