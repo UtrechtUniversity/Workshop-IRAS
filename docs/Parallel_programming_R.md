@@ -46,9 +46,7 @@ Two final remarks about `parLapply`:
 
 ### Package `batchtools`
 
-Our second package is `batchtools`. This package has been designed to move your  parallel computations seamlessly from the laptop/workstation to remote computers or computer clusters. `batchtools` also implements a workflow for **experiment design**. See for more information [this link](https://cran.r-project.org/web/packages/batchtools/vignettes/batchtools.pdf).
-
-A nice feature of `batchtools` is the fact that it works with data tables instead of lists. __Lists Are So 20th Century!__
+Our second package is `batchtools`. This package has been designed to move your  parallel computations seamlessly from the laptop/workstation to remote computers or computer clusters. `batchtools` also implements a workflow for batch compuations. See for more information [this link](https://cran.r-project.org/web/packages/batchtools/vignettes/batchtools.pdf). Another nice feature of `batchtools` is the fact that it works with data tables instead of lists.
 
 In the file `./R/digits_svm_bt.R` we have rewritten our example to work with `batchtools`. Open this script in an editor and browse the code. You also can, step-by-step, run this script in RStudio on your laptop provided that you have `installed.packages('batchtools')`.
 
@@ -64,14 +62,10 @@ There are several points we want to focus your attention to:
 
 5. `submitJobs` runs all the tasks. The tasks store their results in the registry `reg`.
 
-5. `reduceResults` reduces the results in the registry by iterating the function `fun` over the list of results. If `n` is the number of tasks, and `r` is the vector with all the tasks results, then the reduced result `red_r` is computed as follows:
+5. `reduceResults` reduces the results in the registry by iterating the function `fun` over the list of results. The outcome is one table with all the results as rows in that table.
 
-```
-red_r[0] = init                       # last value                        
-red_r[i] = fun(r[i], red_r[i-1])      # reduced result after i-th iteration
-red_r = red_r[n]                      # reduced result of computation is the 
-                                      # reduced result after n-th iteration
-```
+How `reduceResults` works is best explained with an example from arithmetic. If the list/vector is v <- c(1, 2, 3, 4, 5) and the function is `+` (add two numbers) then reduce( x = v, fun= '+') is (1 + (2 + (3 + (4 + 5)))). Or in other words, the reduced result is the result of function `fun` with as first argument the first element of the list/vector and as second argument the reduced result of the rest of the list/vector. This is an example of Recursive Programming and it, probably, seems sheer magic at the beginning. But it becomes a powerful tool once you get the hang of it.
+
 
 There is a batch script `./batch/bt_batch.sh` that runs the `./R/digits_svm_bt.R` script on a node. Edit the email address in the batch script and submits it.
 
@@ -86,11 +80,9 @@ When the job has ended inspect the output in `./output/digits_svm_bt.csv`. Also 
 seff <job number>
 ```
 
-### Epilogue
-
 This is the end of our lesson on **Parallel Programming in R**. As we have mentioned in the first paragraph, there are many more packages to explore. We must admit that the given examples were rather simple. In a real parallel universe you can encounter problems which requires you to delve deep in the documentation. E.g. if you have tasks that differ substantially in computing time.
 
-One of the nice things, however, is that `parallel` and `batchtools` also run on your workstation. And workstations, today, have often 6 or more cores. And if you need more and/or remote computing power, your program can easily be migrated to a node on a cluster.
+One of the nice things of the packages`parallel` and `batchtools` is that they also run on your workstation. You can develop your parallel code interactively in RStudio. Desktop and laptop computers have often 6 or more cores these days. And if you need more computing power, your program can easily be migrated to a node on a cluster.
 
 
 

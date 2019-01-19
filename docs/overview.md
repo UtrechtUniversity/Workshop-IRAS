@@ -57,44 +57,63 @@ We close the first session with a plenary discussion of what you have learned so
 
 We would also like to give you a preview of the second session
 
-### Lesson 7: Start of second sessions: recap of lessons I to V
+### Lesson 7: Start of second sessions.
 
-<< nog invullen >>
+If you have any questions regarding the contents of the first session, now is the time to ask.
 
-Login on Lisa. You have to install new scripts. Type to the prompt the following commands:
+When the questions are answered, we start the second session with (re-)installing the documents and scripts on Lisa from the repository.
+
+Login on Lisa and type the following commands:
 
 ```
 rm -r Workshop-IRAS       # removes the folder Workshop-IRAS and
                           # everything in it
+                          
 ls                        # Workshop-IRAS should not be in the list
+
 git clone https://github.com/UtrechtUniversity/Workshop-IRAS.git
+
 ls                        # Workshop-RAS should be listed again
 ```
 
 
 ### Lesson 8: Running many small tasks revisited
 
-In lesson 5 you have learned how to run dozens of small tasks in parallel. We asked the scheduler for 6 nodes of 15 cores each. Each task had it's own dedicated core. Lisa has ~420 nodes / ~7.000 cores, hence to give you 6 nodes (= 120 cores) wasn't a problem. But what to do when you are working on a smaller cluster and you have far more tasks to run? Then you probably can't give each task it's own core. Another problem arises, when a system would charge you a start up fee per node besides charges for the walltime. Then it could be wiser to use a node longer than the ~20 seconds as we did. In this lesson we show you how to control the number of nodes or the walltime of a job.
+In lesson 5 you learned how to run dozens of small tasks in parallel. We asked the scheduler for 6 nodes of 15 cores each. Each task had it's own dedicated core. Lisa has ~420 nodes / ~7.000 cores, hence to give you 6 nodes (= 120 cores) wasn't a problem. But what to do when you are working on a smaller cluster and you have far more tasks to run? Then you probably can't give each task it's own core. Another problem arises, when a system would charge you a start up fee per node besides charging for walltime. Then it could be wiser to use a node longer than the ~20 seconds as we did. In this lesson we show you how to control the number of nodes or the walltime of a job.
 
 _<[course material](./nodes_vs_walltime.md)>_
 
 ### Lesson 9: Parallel Programming in R
 
-Untill now we have been dealing with **pleasingly parallel** jobs. We had one program that we ran many times with different parameter settings. The R program itself was strictly sequential and used one core. But often you can also parallelize parts of your programs too. E.g. when you use `for-loops` or when you apply functions over a list (`lapply`). These constructs are candidates for parallelisation. In this lesson we teach you how!
+Untill now we have been dealing with **pleasingly parallel** jobs. We have one program that we have run many times with different parameter settings. The R program itself is strictly sequential and, therfore, uses one core. But often you can also parallelize parts of your programs too. E.g. when you use `for-loops` or when you apply functions over a list (e.g. the famous `lapply` function). These program parts are also candidates for parallelisation. In this lesson we teach you how!
 
 _<[course material](./Parallel_programming_R.md)>_
 
 ### Lesson 10: Combining parallel batch scripts with parallel R scripts
 
-Finally, we combine both types of parallelism. We split the table with the parameter combinations in chunks of tasks. Each chunck will be submitted to a node and the R program will decide how to run the tasks in the assigned chunk.
+Finally, we combine both types of parallelism. First we divide the work in chunks (or batches) over nodes, as we did with `make_batch_svm[1].R` and second, on each node an R scripts picks up the its chunk and processes it on the available cores. 
 
 _<[course material](./chunks.md)>_
 
 ### Lesson 11 Working on your own parallel scripts (batch and/or R)
 
-When there is time left, you can start working on a parallel program of your own. We will be there to help you on your way. Your login will be available for another 2 weeks. If you want a prolongation of your account, send us an email at <info.rdm@uu.nl>.
+When there is time left, you can start working on a parallel program of your own. We will be there to help you to help you get started. Your login will be available for another 2 weeks. If you want a prolongation of your account, send us an email at <info.rdm@uu.nl>.
 
-### Lesson 12 Wrap up & Discussion
+##  Epilogue
+
+This is the end of our workshop. Although it may have been difficult subject matter for you, we hope you have enjoyed working with a computer cluster. The contents of this workshop is just an introduction to get you started. When you are going to program a computer cluster yourself, you will undoubtedly run into problems, errors etc. On the internet there are many fora, blogs, vignettes, repos, etc. dedicated to R and HPC to help you.
+
+Some nice sources of information are:
+
+1. [SURFsara Lisa user info](https://userinfo.surfsara.nl/systems/lisa)
+
+2. [Packages for High-Performance and Parallel Computing with R](https://cran.r-project.org/web/views/HighPerformanceComputing.html)
+
+3. [Introduction package batchtools](https://cran.r-project.org/web/packages/batchtools/vignettes/batchtools.pdf)
+
+4. [Introduction package parallel](https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf)
+
+
 
 
 
