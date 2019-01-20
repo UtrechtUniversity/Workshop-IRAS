@@ -61,20 +61,17 @@ We would also like to give you a preview of the second session
 
 If you have any questions regarding the contents of the first session, now is the time to ask.
 
-When the questions are answered, we start the second session with (re-)installing the documents and scripts on Lisa from the repository.
+When your questions are answered, we start the second session with (re-)installing the documents and scripts on Lisa from the repository. 
 
-Login on Lisa and type the following commands:
+Remove the workshop directory and its contents
 
 ```
+cd ~                      # go to home directory
 rm -r Workshop-IRAS       # removes the folder Workshop-IRAS and
                           # everything in it
-                          
-ls                        # Workshop-IRAS should not be in the list
-
-git clone https://github.com/UtrechtUniversity/Workshop-IRAS.git
-
-ls                        # Workshop-RAS should be listed again
 ```
+
+See [documentation](./preparations.md) of lesson 3 for how to copy the Workshop-IRAS repo.
 
 
 ### Lesson 8: Running many small tasks revisited
