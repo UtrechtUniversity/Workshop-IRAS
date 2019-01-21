@@ -98,7 +98,7 @@ This is the end of our lesson on **Parallel Programming in R**. As we have menti
 
 One of the nice things of the packages `parallel` and `batchtools` is that they also run on your workstation. You can develop your parallel code interactively in RStudio. Desktop and laptop computers have often 6 or more cores these days. And if you need more computing power, your program can easily be migrated to a node on a cluster.
 
-
+We have come to the end of this lesson. In the next lesson we will combine parallel batch scripts and parallel R scripts. Go back to the [overview](./overview.md) or go to the [next lesson](./chunks.md).
 
 
 
