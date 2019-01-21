@@ -62,7 +62,7 @@ install.packages('batchtools')
 ```
 R will ask you from which "Cran mirror" to download. Answer 1 or 8. It will take quite a while to install this packages. There will appear many messages on your screen. Just wait till you see the R prompt '>' again. Close R with `quit()`
 
-In the file `./R/digits_svm_bt.R` we have rewritten our example to work with `batchtools`. Open this script in an editor and browse the code. If you want you run this script step-by-step in RStudio on your laptop provided that you have `installed.packages('batchtools')` in RStudio.
+In the file `./R/digits_svm_bt.R` we have rewritten our example to work with `batchtools`. Open this script in an editor and browse the code. If you want you can run this script step-by-step in RStudio on your laptop provided that you have `installed.packages('batchtools')` in RStudio.
 
 There are several points we want to focus your attention to:
 
@@ -70,7 +70,7 @@ There are several points we want to focus your attention to:
 
 2. With `makeRegistry` you create a `registry` object. This object contains all the information which is needed to execute the tasks.
 
-3. `batchtools` has several `clusterFunctions` which specifies how the tasks are run. `Multicore` and `Socket` run the tasks in parallel. The former on macOS and Linux and the latter on Windows. With `ncpus` you specify how many cores may be used. The function `Interactive` runs on Windows, macOS and Linux, but sequentially on one core. If `multicore` and `socket` are run on a wrong system the functions defaults to `Interactive`.
+3. `batchtools` has several `clusterFunctions` which specifies how the tasks are run. The `Multicore` and `Socket` functions run the tasks in parallel. The former is used on macOS and Linux systems and the latter is used on Windows systems. With `ncpus` you specify how many cores may be used. The function `Interactive` runs the tasks sequentially on one core (equal on Windows, macOS and Linux). If `multicore` and `socket` are run on a wrong system the functions defaults to `Interactive`.
 
 4. `batchMap` tells the registry which function to apply on which table. It sets up the registry to do accounting for all the tasks.
 
@@ -81,7 +81,7 @@ There are several points we want to focus your attention to:
 How `reduceResults` works is best explained with an example from arithmetic. If the list/vector is v <- c(1, 2, 3, 4, 5) and the function is `+` (add two numbers) then reduce( x = v, fun= '+') is (1 + (2 + (3 + (4 + 5)))). Or in other words, the reduced result is the result of function `fun` with as first argument the first element of the list/vector and as second argument the reduced result of the rest of the list/vector. This is an example of Recursive Programming and it, probably, seems sheer magic at the beginning. But it becomes a powerful tool once you get the hang of it.
 
 
-There is a batch script `./batch/bt_batch.sh` that runs the `./R/digits_svm_bt.R` script on a node. Edit the email address in the batch script and submits it.
+There is a batch script `./batch/bt_batch.sh` that runs the `./R/digits_svm_bt.R` script on a node. Edit the email address in the batch script and submit it.
 
 ```
 sbatch --reservation=iraspd ./batch/batch_bt.sh
