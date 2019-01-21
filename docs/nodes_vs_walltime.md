@@ -46,22 +46,23 @@ And last but not least, it divides the calls to Rscript in series with a length 
 
 The `wait` limits the maximum number of concurrent task to the number of available cores. Every task gets its own core. If there are more tasks than cores, the cores will be switching between tasks to give the tasks a fair share of the available cores (a.k.a. time sharing). But the swapping takes time!
 
-We must warn you that parellizing in this way doesn't work as well if completion times of the task differ substantially. Then it could be possible that cores are waiting idle while one core is still busy working on a long task, reducing the speed up. When initializing the parameters of the make_batch_svm script, the time of completion T must always be the time of the "slowest" task, otherwise the task may not finish before the requested walltime (a job kills automatically when the requested walltime has finished).
+We must warn you that parellizing in this way doesn't work as well if completion times of the task differ substantially. Then it could be possible that cores are waiting idle while one core is still busy working on a long task, reducing the speed up. When initializing the parameters of the make_batch_svm script, the time of completion T must always be the time of the "slowest" task, otherwise the task may not finish before the requested walltime has finished (a job kills automatically when the requested walltime has finished).
 
 At the end of the script there is a for loop that calls the function `make_batch_file` with the right argument values.
 
-Run the script and submit the run.
+Fill in your argument -N in the code below and run the commands to run the R script and to submit the jobs.
 
 ```
 Rscript ./R/make_batch1_svm.R -N <integer> -T 20
 ./batch/submit_svm1.sh
 ```
 
-When the jobs have ended, check from some jobs the walltime with:
+When the jobs have ended, check the walltime of the jobs with:
 
 ```
 seff <job number>
 ```
+It should be less than the requested walltime.
 
 Collect the output with
 
