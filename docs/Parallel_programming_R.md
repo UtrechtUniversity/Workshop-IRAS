@@ -48,20 +48,6 @@ Two final remarks about `parLapply`:
 
 Our second package is `batchtools`. This package has been designed to move your  parallel computations seamlessly from the laptop/workstation to remote computers or computer clusters. `batchtools` also implements a workflow for batch computations. See for more information [this link](https://cran.r-project.org/web/packages/batchtools/vignettes/batchtools.pdf). Another nice feature of `batchtools` is the fact that it works with data tables instead of lists.
 
-First the package `batchtools` must be installed. Type at the linux command prompt:
-
-```
-module load R
-R
-```
-
-And at the R command prompt:
-
-```
-install.packages('batchtools')
-```
-R will ask you from which "Cran mirror" to download. Answer 1 or 8. It will take quite a while to install this packages. There will appear many messages on your screen. Just wait till you see the R prompt '>' again. Close R with `quit()`
-
 In the file `./R/digits_svm_bt.R` we have rewritten our example to work with `batchtools`. Open this script in an editor and browse the code. If you want you can run this script step-by-step in RStudio on your laptop provided that you have `installed.packages('batchtools')` in RStudio.
 
 There are several points we want to focus your attention to:
