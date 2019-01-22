@@ -62,9 +62,9 @@ R
 And at the R command prompt:
 
 ```
-install.packages('batchtools')
+install.packages('batchtools', repos='http://cran.us.r-project.org')
 ```
-R will ask you from which "Cran mirror" to download. Answer 1 or 8. It will take quite a while to install this packages. There will appear many messages on your screen. Just wait till you see the R prompt '>' again. Close R with `quit()`
+Close R with `quit()`
 
 
 Fill in your argument -N in the code below and run the commands to run the R script and to submit the jobs.
