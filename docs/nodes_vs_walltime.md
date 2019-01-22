@@ -50,6 +50,23 @@ We must warn you that parellizing in this way doesn't work as well if completion
 
 At the end of the script there is a for loop that calls the function `make_batch_file` with the right argument values.
 
+Save and close the file.
+
+Now, before running the script, the package `batchtools` must be installed. Type at the linux command prompt:
+
+```
+module load R
+R
+```
+
+And at the R command prompt:
+
+```
+install.packages('batchtools')
+```
+R will ask you from which "Cran mirror" to download. Answer 1 or 8. It will take quite a while to install this packages. There will appear many messages on your screen. Just wait till you see the R prompt '>' again. Close R with `quit()`
+
+
 Fill in your argument -N in the code below and run the commands to run the R script and to submit the jobs.
 
 ```
