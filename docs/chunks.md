@@ -32,10 +32,10 @@ Before we can submit the batch scripts, we have to discuss the modifications in 
 
 Now submit the batches with the submission script
 
-``
+```
 ./batch/submit_svm2.sh
 squeue -u <your login name>
-``
+```
 
 When the jobs are done, chech if the output files are present in the `./output` directory.
 You can check the effiency of a single job with:
