@@ -9,7 +9,7 @@ Neglecting overhead (the time it takes to divide tasks among processors and coll
 ```
 W = TC / P
 ```
-The number of processors is simply the number of nodes (N) times the number of cores per node (n) and the total computation time is the time needed to perform 1 task (T) times the total number of tasks (t) (valid when the task have a similar size).
+The number of processors is simply the number of nodes (N) multiplied by the number of cores per node (n) and the total computation time is the time needed to perform 1 task (T) multiplied by the total number of tasks (t) (valid when the tasks have a similar size).
 
 When the following assumptions are met we can estimate the total walltime:
 
