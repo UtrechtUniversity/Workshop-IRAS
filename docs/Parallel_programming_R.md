@@ -70,7 +70,7 @@ How `reduceResults` works is best explained with an example from arithmetic. If 
 There is a batch script `./batch/bt_batch.sh` that runs the `./R/digits_svm_bt.R` script on a node. Edit the email address in the batch script and submit it.
 
 ```
-sbatch --reservation=iraspd ./batch/batch_bt.sh
+sbatch --reservation=iraspd ./batch/bt_batch.sh
 squeue -u <your login name>
 ```
 
